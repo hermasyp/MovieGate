@@ -6,20 +6,15 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.catnip.moviegate.ui.home.HomeFragment"
+        android:id="@+id/navigation_movie"
+        android:name="com.catnip.moviegate.ui.main.movie.MoviesFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_movie" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.catnip.moviegate.ui.dashboard.DashboardFragment"
+        android:id="@+id/navigation_tvshows"
+        android:name="com.catnip.moviegate.ui.main.tvshow.TvShowsFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_tvshows" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.catnip.moviegate.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>

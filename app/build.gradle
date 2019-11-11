@@ -4,15 +4,17 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion releases.compileSdkVersion
+    buildToolsVersion releases.buildToolsVersion
     defaultConfig {
-        applicationId "com.catnip.moviegate"
-        minSdkVersion 22
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        applicationId releases.appId
+        minSdkVersion releases.minSdkVersion
+        targetSdkVersion releases.targetSdkVersion
+        versionCode releases.versionCode
+        versionName releases.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -25,17 +27,37 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.navigation:navigation-fragment:2.0.0'
-    implementation 'androidx.navigation:navigation-ui:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation deps.projects.kotlin
+    implementation deps.android.appCompat
+    implementation deps.android.ktx
+    implementation deps.android.materials
+    implementation deps.android.constraintLayout
+    implementation deps.android.recyclerview
+    implementation deps.android.cardView
+
+    implementation deps.navigation.lifecycleExt
+    implementation deps.navigation.navUI
+    implementation deps.navigation.navUIKtx
+    implementation deps.navigation.navFragment
+    implementation deps.navigation.navFragmentKtx
+
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.moshiConverter
+    implementation deps.retrofit.rxAdapter
+
+    implementation deps.moshi.moshi
+    kapt deps.moshi.kaptMoshi
+
+    implementation deps.rxjava.rxjava
+    implementation deps.rxjava.rxAndroid
+
+    implementation deps.koin.koin
+    implementation deps.koin.koinViewModel
+
+    implementation deps.coil.coil
+
+
+    testImplementation deps.testing.jUnit
+    androidTestImplementation deps.testing.testRunner
+    androidTestImplementation deps.testing.espresso
 }

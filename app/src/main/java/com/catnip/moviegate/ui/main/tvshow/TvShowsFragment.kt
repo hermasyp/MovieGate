@@ -1,4 +1,4 @@
-package com.catnip.moviegate.ui.dashboard
+package com.catnip.moviegate.ui.main.tvshow
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.catnip.moviegate.R
 
-class DashboardFragment : Fragment() {
+class TvShowsFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var tvShowsViewModel: TvShowsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        tvShowsViewModel =
+            ViewModelProviders.of(this).get(TvShowsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_tvshows, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
+        tvShowsViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

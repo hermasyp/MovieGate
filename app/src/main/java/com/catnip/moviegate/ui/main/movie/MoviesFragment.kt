@@ -1,4 +1,4 @@
-package com.catnip.moviegate.ui.notifications
+package com.catnip.moviegate.ui.main.movie
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.catnip.moviegate.R
 
-class NotificationsFragment : Fragment() {
+class MoviesFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    private lateinit var moviesViewModel: MoviesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-            ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(this, Observer {
+        moviesViewModel =
+            ViewModelProviders.of(this).get(MoviesViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_movie, container, false)
+        val textView: TextView = root.findViewById(R.id.text_home)
+        moviesViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root
