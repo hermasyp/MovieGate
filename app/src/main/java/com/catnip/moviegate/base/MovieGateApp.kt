@@ -1,7 +1,7 @@
 package com.catnip.moviegate.base
 
 import android.app.Application
-import com.catnip.moviegate.di.networkModule
+import com.catnip.moviegate.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -14,7 +14,7 @@ class MovieGateApp : Application(){
         super.onCreate()
         startKoin {
             androidContext(this@MovieGateApp)
-            modules(listOf(networkModule))
+            modules(listOf(networkModule,mainScopesModule))
         }
     }
 }

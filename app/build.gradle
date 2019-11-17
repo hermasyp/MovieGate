@@ -21,15 +21,23 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'BASE_API_URL', '"https://api.themoviedb.org/3/discover/"'
-            buildConfigField 'String', 'BASE_IMG_URL', '"https://image.tmdb.org/t/p/"'
+            buildConfigField 'String', 'BASE_API_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'BASE_POSTER_IMG_URL', '"https://image.tmdb.org/t/p/w342"'
             buildConfigField 'String', 'API_KEY', '"18f561e5cdd33d75193dad88ac56d887"'
         }
-        debug{
-            buildConfigField 'String', 'BASE_API_URL', '"https://api.themoviedb.org/3/discover/"'
-            buildConfigField 'String', 'BASE_IMG_URL', '"https://image.tmdb.org/t/p/"'
+        debug {
+            buildConfigField 'String', 'BASE_API_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'BASE_POSTER_IMG_URL', '"https://image.tmdb.org/t/p/w342"'
             buildConfigField 'String', 'API_KEY', '"18f561e5cdd33d75193dad88ac56d887"'
         }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
@@ -49,6 +57,8 @@ dependencies {
     implementation deps.navigation.navUIKtx
     implementation deps.navigation.navFragment
     implementation deps.navigation.navFragmentKtx
+
+    implementation deps.paging.pagingRuntime
 
     implementation deps.retrofit.retrofit
     implementation deps.retrofit.moshiConverter

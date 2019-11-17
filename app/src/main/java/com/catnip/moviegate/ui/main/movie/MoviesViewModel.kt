@@ -3,11 +3,25 @@ package com.catnip.moviegate.ui.main.movie
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.paging.PagedList
+import com.catnip.moviegate.model.movies.Movie
+import com.catnip.moviegate.network.PaginateResultState
+import com.catnip.moviegate.network.ResultState
+import io.reactivex.disposables.CompositeDisposable
 
-class MoviesViewModel : ViewModel() {
+class MoviesViewModel(private val repository: MoviesRepository,
+                      private val compositeDisposable: CompositeDisposable) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    val movies : LiveData<PagedList<Movie>> by lazy {
+        repository.fetchMovies()
     }
-    val text: LiveData<String> = _text
+
+    val resultState : LiveData<PaginateResultState> by lazy {
+        repository.getFetchState()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
+    }
 }

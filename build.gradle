@@ -32,11 +32,12 @@ buildscript {
             'rules'           : '1.1.0',
             'rxjava'          : '2.2.11',
             'rxAndroid'       : '2.1.1',
-            'navigation'      : '2.1.0'
+            'navigation'      : '2.1.0',
+            'paging'          : '2.1.0'
     ]
 
     ext.deps = [
-            android : [
+            android   : [
                     'constraintLayout': "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}",
                     'appCompat'       : "androidx.appcompat:appcompat:${versions.appCompat}",
                     'materials'       : "com.google.android.material:material:${versions.design}",
@@ -44,42 +45,47 @@ buildscript {
                     'recyclerview'    : "androidx.recyclerview:recyclerview:${versions.design}",
                     'ktx'             : "androidx.core:core-ktx:${versions.ktx}",
             ],
-            projects: [
+            projects  : [
                     'kotlinGradle': "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
                     'kotlin'      : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
                     'gradle'      : "com.android.tools.build:gradle:${versions.gradle}",
             ],
-            retrofit: [
-                    'retrofit'       : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
-                    'moshiConverter' : "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
-                    'rxAdapter'      : "com.squareup.retrofit2:adapter-rxjava2:${versions.rxretrofit}",
-                    'okHttpLogging'  : "com.squareup.okhttp3:logging-interceptor:${versions.okhttpLogging}",
+            retrofit  : [
+                    'retrofit'      : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                    'moshiConverter': "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
+                    'rxAdapter'     : "com.squareup.retrofit2:adapter-rxjava2:${versions.rxretrofit}",
+                    'okHttpLogging' : "com.squareup.okhttp3:logging-interceptor:${versions.okhttpLogging}",
 
             ],
-            moshi   : [
+            moshi     : [
                     'moshi'    : "com.squareup.moshi:moshi-kotlin:${versions.moshi}",
                     'kaptMoshi': "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}",
 
             ],
-            coil    : [
+            coil      : [
                     'coil': "io.coil-kt:coil:${versions.coil}",
             ],
-            rxjava  : [
+            rxjava    : [
                     'rxjava'   : "io.reactivex.rxjava2:rxjava:${versions.rxjava}",
                     'rxAndroid': "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
             ],
-            koin    : [
+            koin      : [
                     'koin'         : "org.koin:koin-android:${versions.koin}",
                     'koinViewModel': "org.koin:koin-androidx-viewmodel:${versions.koin}",
+                    'koinScope'    : "org.koin:koin-androidx-scope:${versions.koin}",
             ],
-            navigation  : [
-                    'navFragment': "androidx.navigation:navigation-fragment:${versions.navigation}",
+            navigation: [
+                    'navFragment'   : "androidx.navigation:navigation-fragment:${versions.navigation}",
                     'navFragmentKtx': "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
-                    'navUI': "androidx.navigation:navigation-ui:${versions.navigation}",
-                    'navUIKtx': "androidx.navigation:navigation-ui-ktx:${versions.navigation}",
-                    'lifecycleExt': "androidx.lifecycle:lifecycle-extensions:${versions.navigation}"
+                    'navUI'         : "androidx.navigation:navigation-ui:${versions.navigation}",
+                    'navUIKtx'      : "androidx.navigation:navigation-ui-ktx:${versions.navigation}",
+                    'lifecycleExt'  : "androidx.lifecycle:lifecycle-extensions:${versions.navigation}"
             ],
-            testing : [
+            paging    : [
+                    'pagingRuntime': "androidx.paging:paging-runtime:${versions.paging}",
+                    'pagingRx'     : "androidx.paging:paging-rxjava2:${versions.paging}",
+            ],
+            testing   : [
                     'jUnit'     : "junit:junit:${versions.jUnit}",
                     'testRunner': "androidx.test:runner:${versions.testRunner}",
                     'espresso'  : "androidx.test.espresso:espresso-core:${versions.espresso}",
