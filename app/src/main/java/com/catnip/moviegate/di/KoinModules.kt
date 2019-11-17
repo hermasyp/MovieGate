@@ -20,6 +20,9 @@ val networkModule = module {
     single { RetrofitApi() }
     single { AppScheduler() }
 }
+val viewModels = module {
+
+}
 
 val mainScopesModule = module {
     scope(named<MoviesFragment>()) {
