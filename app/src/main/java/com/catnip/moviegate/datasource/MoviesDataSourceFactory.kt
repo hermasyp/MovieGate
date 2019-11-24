@@ -3,6 +3,7 @@ package com.catnip.moviegate.datasource
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.catnip.moviegate.model.movies.Movie
+import com.catnip.moviegate.network.AppScheduler
 import com.catnip.moviegate.network.RetrofitApi
 import com.catnip.moviegate.network.Scheduler
 import io.reactivex.disposables.CompositeDisposable
@@ -14,7 +15,7 @@ Github : https://github.com/hermasyp
  **/
 class MoviesDataSourceFactory(
     private val api: RetrofitApi,
-    private val scheduler: Scheduler,
+    private val scheduler: AppScheduler,
     private val compositeDisposable: CompositeDisposable
 ) : DataSource.Factory<Int, Movie>() {
 

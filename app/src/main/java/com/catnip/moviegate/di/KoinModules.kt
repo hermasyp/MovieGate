@@ -3,7 +3,7 @@ package com.catnip.moviegate.di
 import com.catnip.moviegate.datasource.MoviesDataSourceFactory
 import com.catnip.moviegate.network.AppScheduler
 import com.catnip.moviegate.network.RetrofitApi
-import com.catnip.moviegate.ui.main.movie.MoviesFragment
+import com.catnip.moviegate.network.Scheduler
 import com.catnip.moviegate.ui.main.movie.MoviesRepository
 import com.catnip.moviegate.ui.main.movie.MoviesViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -25,7 +25,7 @@ val viewModels = module {
 }
 
 val mainScopesModule = module {
-    scope(named<MoviesFragment>()) {
+    scope(named("MoviesFragment")) {
         scoped { CompositeDisposable() }
         scoped { MoviesRepository(get()) }
         scoped { MoviesDataSourceFactory(get(), get(), get()) }

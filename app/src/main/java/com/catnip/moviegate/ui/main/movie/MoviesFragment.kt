@@ -10,13 +10,21 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.catnip.moviegate.R
 import kotlinx.android.synthetic.main.fragment_movie.*
+import org.koin.android.ext.android.getKoin
 import org.koin.androidx.scope.currentScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.qualifier.named
 
 class MoviesFragment : Fragment() {
 
-    private val moviesViewModel: MoviesViewModel by viewModel()
+    private val scopeName = getKoin().createScope("moviesListScope",named("MoviesFragment"))
+    private val moviesViewModel: MoviesViewModel by scopeName.viewModel(this)
+
     private lateinit var moviesAdapter : MoviesAdapter
+    companion object{
+        const val scopeName = "MoviesFragment"
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,4 +53,10 @@ class MoviesFragment : Fragment() {
         })
 
     }
+
+    override fun onStop() {
+        super.onStop()
+        scopeName.close()
+    }
+
 }

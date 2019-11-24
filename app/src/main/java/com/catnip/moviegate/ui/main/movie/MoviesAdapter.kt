@@ -79,7 +79,7 @@ class MoviesAdapter : PagedListAdapter<Movie, RecyclerView.ViewHolder>(MoviesDif
         fun bind(movie: Movie?) {
             itemView.txt_title_content.text = movie?.title
             itemView.txt_year_content.text = movie?.releaseDate
-            itemView.img_poster.load(BuildConfig.BASE_POSTER_IMG_URL)
+            itemView.img_poster.load(BuildConfig.BASE_POSTER_IMG_URL+movie?.posterPath)
         }
     }
 

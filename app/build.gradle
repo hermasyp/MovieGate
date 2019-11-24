@@ -63,6 +63,7 @@ dependencies {
     implementation deps.retrofit.retrofit
     implementation deps.retrofit.moshiConverter
     implementation deps.retrofit.rxAdapter
+    implementation deps.retrofit.okHttpLogging
 
     implementation deps.moshi.moshi
     kapt deps.moshi.kaptMoshi
@@ -71,6 +72,7 @@ dependencies {
     implementation deps.rxjava.rxAndroid
 
     implementation deps.koin.koin
+    implementation deps.koin.koinScope
     implementation deps.koin.koinViewModel
 
     implementation deps.coil.coil

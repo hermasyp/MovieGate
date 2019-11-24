@@ -6,6 +6,7 @@ import com.catnip.moviegate.model.tvshows.TvShows
 import io.reactivex.Single
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -21,10 +22,10 @@ Github : https://github.com/hermasyp
 interface RetrofitApi {
     //TODO : api interface will written in here.
 
-    @GET("/discover/movie")
+    @GET("/3/discover/movie")
     fun getMovies(@Query("page") page: Int):Single<Movies>
 
-    @GET("/discover/tv")
+    @GET("/3/discover/tv")
     fun getTvShows(@Query("page") page: Int):Single<TvShows>
 
     companion object{
@@ -44,6 +45,7 @@ interface RetrofitApi {
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(authInterceptor)
+                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
