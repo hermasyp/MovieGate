@@ -1,5 +1,6 @@
 package com.catnip.moviegate.datasource
 
+import android.util.Log.d
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.catnip.moviegate.base.Constants
@@ -20,6 +21,7 @@ class MoviesDataSource(
     private val compositeDisposable: CompositeDisposable
 ) : PageKeyedDataSource<Int, Movie>() {
 
+    private val TAG = MoviesDataSource::class.java.simpleName
     val state : MutableLiveData<PaginateResultState> = MutableLiveData()
 
     override fun loadInitial(
@@ -36,6 +38,8 @@ class MoviesDataSource(
                 },
                 {
                     state.postValue(PaginateResultState.ERROR)
+                    d(TAG,"ended failed "+it.message)
+
                 })
             .addTo(compositeDisposable)
 
@@ -50,13 +54,16 @@ class MoviesDataSource(
                     if(it.totalPages >= params.key) {
                         callback.onResult(it.results, params.key+1)
                         state.postValue(PaginateResultState.LOADED)
+                        d(TAG,"loaded total pages = "+it.totalPages + " page = "+params.key)
                     }
                     else{
                         state.postValue(PaginateResultState.EOF)
+                        d(TAG,"ended total pages = "+it.totalPages + " page = "+params.key)
                     }
                 },
                 {
                     state.postValue(PaginateResultState.ERROR)
+                    d(TAG,"ended failed "+it.message)
                 }
             ).addTo(compositeDisposable)
     }

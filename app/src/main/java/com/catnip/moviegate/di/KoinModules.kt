@@ -16,12 +16,15 @@ Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 
+class ScopeName{
+    companion object{
+        const val moviesScopeName = "MoviesFragment"
+    }
+}
+
 val networkModule = module {
     single { RetrofitApi() }
     single { AppScheduler() }
-}
-val viewModels = module {
-
 }
 
 val mainScopesModule = module {

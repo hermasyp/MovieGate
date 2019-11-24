@@ -1,6 +1,7 @@
 package com.catnip.moviegate.ui.main.movie
 
 import android.os.Bundle
+import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,10 +22,6 @@ class MoviesFragment : Fragment() {
     private val moviesViewModel: MoviesViewModel by scopeName.viewModel(this)
 
     private lateinit var moviesAdapter : MoviesAdapter
-    companion object{
-        const val scopeName = "MoviesFragment"
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +47,9 @@ class MoviesFragment : Fragment() {
 
         moviesViewModel.movies.observe(this, Observer {
             moviesAdapter.submitList(it)
+        })
+        moviesViewModel.resultState.observe(this, Observer {
+            d(MoviesFragment::class.java.simpleName,it.message)
         })
 
     }
