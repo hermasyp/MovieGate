@@ -1,19 +1,17 @@
 package com.catnip.moviegate.model.detailtvshow
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class CreatedBy(
-    @Json(name = "credit_id")
+    @SerializedName("credit_id")
     var creditId: String,
-    @Json(name = "gender")
+    @SerializedName("gender")
     var gender: Int,
-    @Json(name = "id")
+    @SerializedName("id")
     var id: Int,
-    @Json(name = "name")
+    @SerializedName("name")
     var name: String,
-    @Json(name = "profile_path")
+    @SerializedName("profile_path")
     var profilePath: String
 )

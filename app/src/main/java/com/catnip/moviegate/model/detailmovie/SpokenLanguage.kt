@@ -1,11 +1,11 @@
 package com.catnip.moviegate.model.detailmovie
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class SpokenLanguage(
-    @Json(name = "name")
+    @SerializedName("iso_639_1")
+    var iso6391: String,
+    @SerializedName("name")
     var name: String
 )

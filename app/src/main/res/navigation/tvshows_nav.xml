@@ -2,14 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_movie">
-
-    <fragment
-        android:id="@+id/navigation_movie"
-        android:name="com.catnip.moviegate.ui.main.movie.MoviesFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_movie" />
+    android:id="@+id/tvshows_nav"
+    app:startDestination="@+id/navigation_tvshows">
 
     <fragment
         android:id="@+id/navigation_tvshows"

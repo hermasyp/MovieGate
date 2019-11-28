@@ -58,15 +58,17 @@ dependencies {
     implementation deps.navigation.navFragment
     implementation deps.navigation.navFragmentKtx
 
+    implementation deps.fragmentx.fragment
+    implementation deps.fragmentx.fragmentKtx
+
     implementation deps.paging.pagingRuntime
 
     implementation deps.retrofit.retrofit
-    implementation deps.retrofit.moshiConverter
+    implementation deps.retrofit.gsonConverter
     implementation deps.retrofit.rxAdapter
     implementation deps.retrofit.okHttpLogging
 
-    implementation deps.moshi.moshi
-    kapt deps.moshi.kaptMoshi
+    implementation deps.gson.gson
 
     implementation deps.rxjava.rxjava
     implementation deps.rxjava.rxAndroid

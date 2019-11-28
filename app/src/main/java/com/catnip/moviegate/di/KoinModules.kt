@@ -1,6 +1,7 @@
 package com.catnip.moviegate.di
 
 import com.catnip.moviegate.datasource.MoviesDataSourceFactory
+import com.catnip.moviegate.di.ScopeNames.MoviesListScopes
 import com.catnip.moviegate.network.AppScheduler
 import com.catnip.moviegate.network.RetrofitApi
 import com.catnip.moviegate.network.Scheduler
@@ -16,16 +17,17 @@ Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 
+object ScopeNames{
+    const val MoviesListScopes = "MoviesFragment"
+}
+
 val networkModule = module {
     single { RetrofitApi() }
     single { AppScheduler() }
 }
-val viewModels = module {
-
-}
 
 val mainScopesModule = module {
-    scope(named("MoviesFragment")) {
+    scope(named(MoviesListScopes)) {
         scoped { CompositeDisposable() }
         scoped { MoviesRepository(get()) }
         scoped { MoviesDataSourceFactory(get(), get(), get()) }

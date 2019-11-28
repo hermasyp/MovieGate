@@ -1,17 +1,15 @@
 package com.catnip.moviegate.model.tvshows
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class TvShows(
-    @Json(name = "page")
+    @SerializedName("page")
     var page: Int,
-    @Json(name = "results")
+    @SerializedName("results")
     var results: List<TvShow>,
-    @Json(name = "total_pages")
+    @SerializedName("total_pages")
     var totalPages: Int,
-    @Json(name = "total_results")
+    @SerializedName("total_results")
     var totalResults: Int
 )

@@ -4,27 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.catnip.moviegate.R
+import com.catnip.moviegate.di.ScopeNames
+import com.catnip.moviegate.utils.recyclerview.GridSpacingItemDecoration
 import kotlinx.android.synthetic.main.fragment_movie.*
 import org.koin.android.ext.android.getKoin
-import org.koin.androidx.scope.currentScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 
 class MoviesFragment : Fragment() {
 
-    private val scopeName = getKoin().createScope("moviesListScope",named("MoviesFragment"))
+    private val scopeId = "moviesListScope"
+    private val scopeName = getKoin().createScope(scopeId,named(ScopeNames.MoviesListScopes))
     private val moviesViewModel: MoviesViewModel by scopeName.viewModel(this)
-
     private lateinit var moviesAdapter : MoviesAdapter
-    companion object{
-        const val scopeName = "MoviesFragment"
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,12 +40,16 @@ class MoviesFragment : Fragment() {
                 return if (viewType == moviesAdapter.MOVIE_VIEW_TYPE ) 1 else 3
             }
         }
+        rv_movies.addItemDecoration(GridSpacingItemDecoration(3,20,true))
         rv_movies.layoutManager = gridLayoutManager
         rv_movies.setHasFixedSize(true)
         rv_movies.adapter = moviesAdapter
 
         moviesViewModel.movies.observe(this, Observer {
             moviesAdapter.submitList(it)
+        })
+        moviesViewModel.resultState.observe(this, Observer {
+            moviesAdapter.setState(it)
         })
 
     }

@@ -1,35 +1,33 @@
 package com.catnip.moviegate.model.tvshows
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class TvShow(
-    @Json(name = "backdrop_path")
+    @SerializedName("backdrop_path")
     var backdropPath: String,
-    @Json(name = "first_air_date")
+    @SerializedName("first_air_date")
     var firstAirDate: String,
-    @Json(name = "genre_ids")
+    @SerializedName("genre_ids")
     var genreIds: List<Int>,
-    @Json(name = "id")
+    @SerializedName("id")
     var id: Int,
-    @Json(name = "name")
+    @SerializedName("name")
     var name: String,
-    @Json(name = "origin_country")
+    @SerializedName("origin_country")
     var originCountry: List<String>,
-    @Json(name = "original_language")
+    @SerializedName("original_language")
     var originalLanguage: String,
-    @Json(name = "original_name")
+    @SerializedName("original_name")
     var originalName: String,
-    @Json(name = "overview")
+    @SerializedName("overview")
     var overview: String,
-    @Json(name = "popularity")
+    @SerializedName("popularity")
     var popularity: Double,
-    @Json(name = "poster_path")
+    @SerializedName("poster_path")
     var posterPath: String,
-    @Json(name = "vote_average")
-    var voteAverage: Double,
-    @Json(name = "vote_count")
+    @SerializedName("vote_average")
+    var voteAverage: Int,
+    @SerializedName("vote_count")
     var voteCount: Int
 )

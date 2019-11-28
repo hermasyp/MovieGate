@@ -9,7 +9,6 @@ import com.catnip.moviegate.datasource.MoviesDataSource
 import com.catnip.moviegate.datasource.MoviesDataSourceFactory
 import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.network.PaginateResultState
-import com.catnip.moviegate.network.ResultState
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas

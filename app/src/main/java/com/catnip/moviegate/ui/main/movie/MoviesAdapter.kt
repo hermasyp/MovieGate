@@ -1,5 +1,6 @@
 package com.catnip.moviegate.ui.main.movie
 
+import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -11,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.catnip.moviegate.BuildConfig
 import com.catnip.moviegate.R
+import com.catnip.moviegate.ext.textParseFromDate
 import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.network.PaginateResultState
-import com.catnip.moviegate.network.ResultState
 import kotlinx.android.synthetic.main.list_item_lazy_load.view.*
 import kotlinx.android.synthetic.main.list_item_movies.view.*
 
@@ -60,8 +61,9 @@ class MoviesAdapter : PagedListAdapter<Movie, RecyclerView.ViewHolder>(MoviesDif
     override fun getItemViewType(position: Int): Int {
         return if (isHavingExtraRow() && position == itemCount - 1) {
             LAZY_LOAD_VIEW_TYPE
-        } else
+        } else {
             MOVIE_VIEW_TYPE
+        }
     }
 
     class MoviesDiffUtils : DiffUtil.ItemCallback<Movie>() {
@@ -78,8 +80,8 @@ class MoviesAdapter : PagedListAdapter<Movie, RecyclerView.ViewHolder>(MoviesDif
     class MovieItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         fun bind(movie: Movie?) {
             itemView.txt_title_content.text = movie?.title
-            itemView.txt_year_content.text = movie?.releaseDate
-            itemView.img_poster.load(BuildConfig.BASE_POSTER_IMG_URL+movie?.posterPath)
+            itemView.txt_year_content.textParseFromDate(movie?.releaseDate)
+            itemView.img_poster.load(BuildConfig.BASE_POSTER_IMG_URL + movie?.posterPath)
         }
     }
 
@@ -105,6 +107,22 @@ class MoviesAdapter : PagedListAdapter<Movie, RecyclerView.ViewHolder>(MoviesDif
                     }
                 }
             }
+        }
+    }
+
+    fun setState(state: PaginateResultState) {
+        val prevState = this.state
+        val hadExtraRow = isHavingExtraRow()
+        this.state = state
+        val hasExtraRow = isHavingExtraRow()
+        if (hadExtraRow != hasExtraRow) {
+            if (hadExtraRow) {                             //hadExtraRow is true and hasExtraRow false
+                notifyItemRemoved(super.getItemCount())    //remove the progressbar at the end
+            } else {                                       //hasExtraRow is true and hadExtraRow false
+                notifyItemInserted(super.getItemCount())   //add the progressbar at the end
+            }
+        } else if (hasExtraRow && prevState != state) { //hasExtraRow is true and hadExtraRow true and (NetworkState.ERROR or NetworkState.ENDOFLIST)
+            notifyItemChanged(itemCount - 1)       //add the network message at the end
         }
     }
 

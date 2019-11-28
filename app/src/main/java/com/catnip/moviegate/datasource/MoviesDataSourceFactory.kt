@@ -5,7 +5,6 @@ import androidx.paging.DataSource
 import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.network.AppScheduler
 import com.catnip.moviegate.network.RetrofitApi
-import com.catnip.moviegate.network.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 
 

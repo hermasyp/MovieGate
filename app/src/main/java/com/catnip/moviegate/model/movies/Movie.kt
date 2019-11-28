@@ -1,37 +1,35 @@
 package com.catnip.moviegate.model.movies
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class Movie(
-    @Json(name = "adult")
+    @SerializedName("adult")
     var adult: Boolean,
-    @Json(name = "backdrop_path")
+    @SerializedName("backdrop_path")
     var backdropPath: String,
-    @Json(name = "genre_ids")
+    @SerializedName("genre_ids")
     var genreIds: List<Int>,
-    @Json(name = "id")
+    @SerializedName("id")
     var id: Int,
-    @Json(name = "original_language")
+    @SerializedName("original_language")
     var originalLanguage: String,
-    @Json(name = "original_title")
+    @SerializedName("original_title")
     var originalTitle: String,
-    @Json(name = "overview")
+    @SerializedName("overview")
     var overview: String,
-    @Json(name = "popularity")
+    @SerializedName("popularity")
     var popularity: Double,
-    @Json(name = "poster_path")
+    @SerializedName("poster_path")
     var posterPath: String,
-    @Json(name = "release_date")
+    @SerializedName("release_date")
     var releaseDate: String,
-    @Json(name = "title")
+    @SerializedName("title")
     var title: String,
-    @Json(name = "video")
+    @SerializedName("video")
     var video: Boolean,
-    @Json(name = "vote_average")
+    @SerializedName("vote_average")
     var voteAverage: Double,
-    @Json(name = "vote_count")
+    @SerializedName("vote_count")
     var voteCount: Int
 )

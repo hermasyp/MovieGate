@@ -1,13 +1,11 @@
 package com.catnip.moviegate.model.detailtvshow
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class Genre(
-    @Json(name = "id")
+    @SerializedName("id")
     var id: Int,
-    @Json(name = "name")
+    @SerializedName("name")
     var name: String
 )

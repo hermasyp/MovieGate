@@ -2,7 +2,6 @@ package com.catnip.moviegate.datasource
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.catnip.moviegate.base.Constants
 import com.catnip.moviegate.base.Constants.Companion.FIRST_PAGE
 import com.catnip.moviegate.ext.addTo
 import com.catnip.moviegate.ext.performOnBackOutOnMain
@@ -32,7 +31,7 @@ class MoviesDataSource(
             .subscribe(
                 {
                     state.postValue(PaginateResultState.LOADED)
-                    callback.onResult(it.results, null, FIRST_PAGE + 1)
+                    callback.onResult(it.movies, null, FIRST_PAGE + 1)
                 },
                 {
                     state.postValue(PaginateResultState.ERROR)
@@ -48,7 +47,7 @@ class MoviesDataSource(
             .subscribe(
                 {
                     if(it.totalPages >= params.key) {
-                        callback.onResult(it.results, params.key+1)
+                        callback.onResult(it.movies, params.key+1)
                         state.postValue(PaginateResultState.LOADED)
                     }
                     else{
