@@ -1,9 +1,7 @@
-package com.catnip.moviegate.ui.main.movie
+package com.catnip.moviegate.ui.main.tvshow
 
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -12,30 +10,28 @@ import coil.api.load
 import com.catnip.moviegate.BuildConfig
 import com.catnip.moviegate.R
 import com.catnip.moviegate.ext.textParseFromDate
-import com.catnip.moviegate.model.movies.Movie
+import com.catnip.moviegate.model.tvshows.TvShow
 import com.catnip.moviegate.network.PaginateResultState
 import com.catnip.moviegate.utils.recyclerview.LazyLoadItemViewHolder
-import kotlinx.android.synthetic.main.list_item_lazy_load.view.*
-import kotlinx.android.synthetic.main.list_item_movies.view.*
+import kotlinx.android.synthetic.main.list_item_tvshows.view.*
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-class MoviesAdapter : PagedListAdapter<Movie, RecyclerView.ViewHolder>(MoviesDiffUtils()) {
 
-    val MOVIE_VIEW_TYPE = 1
+class TvShowAdapter : PagedListAdapter<TvShow, RecyclerView.ViewHolder>(TvShowsDiffUtils()) {
+    val TVSHOW_VIEW_TYPE = 1
     val LAZY_LOAD_VIEW_TYPE = 2
-
     private var state: PaginateResultState? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view: View
 
-        return if (viewType == MOVIE_VIEW_TYPE) {
-            view = layoutInflater.inflate(R.layout.list_item_movies, parent, false)
-            MovieItemViewHolder(view)
+        return if (viewType == TVSHOW_VIEW_TYPE) {
+            view = layoutInflater.inflate(R.layout.list_item_tvshows, parent, false)
+            TvShowItemViewHolder(view)
         } else {
             view = layoutInflater.inflate(R.layout.list_item_lazy_load, parent, false)
             LazyLoadItemViewHolder(view)
@@ -43,8 +39,8 @@ class MoviesAdapter : PagedListAdapter<Movie, RecyclerView.ViewHolder>(MoviesDif
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (getItemViewType(position) == MOVIE_VIEW_TYPE) {
-            (holder as MovieItemViewHolder).bind(getItem(position))
+        if (getItemViewType(position) == TVSHOW_VIEW_TYPE) {
+            (holder as TvShowItemViewHolder).bind(getItem(position))
         } else {
             (holder as LazyLoadItemViewHolder).bind(state)
         }
@@ -62,26 +58,26 @@ class MoviesAdapter : PagedListAdapter<Movie, RecyclerView.ViewHolder>(MoviesDif
         return if (isHavingExtraRow() && position == itemCount - 1) {
             LAZY_LOAD_VIEW_TYPE
         } else {
-            MOVIE_VIEW_TYPE
+            TVSHOW_VIEW_TYPE
         }
     }
 
-    class MoviesDiffUtils : DiffUtil.ItemCallback<Movie>() {
-        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+    class TvShowsDiffUtils : DiffUtil.ItemCallback<TvShow>() {
+        override fun areItemsTheSame(oldItem: TvShow, newItem: TvShow): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+        override fun areContentsTheSame(oldItem: TvShow, newItem: TvShow): Boolean {
             return oldItem == newItem
         }
 
     }
 
-    class MovieItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        fun bind(movie: Movie?) {
-            itemView.txt_title_content.text = movie?.title
-            itemView.txt_year_content.textParseFromDate(movie?.releaseDate)
-            itemView.img_poster.load(BuildConfig.BASE_POSTER_IMG_URL + movie?.posterPath)
+    class TvShowItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+        fun bind(tvshow: TvShow?) {
+            itemView.txt_title_content.text = tvshow?.originalName
+            itemView.txt_year_content.textParseFromDate(tvshow?.firstAirDate)
+            itemView.img_poster.load(BuildConfig.BASE_POSTER_IMG_URL + tvshow?.posterPath)
         }
     }
 
@@ -100,5 +96,4 @@ class MoviesAdapter : PagedListAdapter<Movie, RecyclerView.ViewHolder>(MoviesDif
             notifyItemChanged(itemCount - 1)       //add the network message at the end
         }
     }
-
 }

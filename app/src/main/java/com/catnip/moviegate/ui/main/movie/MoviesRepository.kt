@@ -5,8 +5,8 @@ import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.catnip.moviegate.base.Constants
-import com.catnip.moviegate.datasource.MoviesDataSource
-import com.catnip.moviegate.datasource.MoviesDataSourceFactory
+import com.catnip.moviegate.datasource.movies.MoviesDataSource
+import com.catnip.moviegate.datasource.movies.MoviesDataSourceFactory
 import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.network.PaginateResultState
 
@@ -29,7 +29,8 @@ class MoviesRepository(private val factory: MoviesDataSourceFactory) {
 
     fun getFetchState(): LiveData<PaginateResultState>{
         return Transformations.switchMap<MoviesDataSource,PaginateResultState>(
-            factory.moviesLiveDataSource,MoviesDataSource::state
+            factory.moviesLiveDataSource,
+            MoviesDataSource::state
         )
     }
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MovieGate</string>
+    <string name="title_tab_movies">Film</string>
+    <string name="title_tab_tvshows">Serial Tv</string>
+</resources>

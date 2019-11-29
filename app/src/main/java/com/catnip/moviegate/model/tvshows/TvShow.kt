@@ -27,7 +27,7 @@ data class TvShow(
     @SerializedName("poster_path")
     var posterPath: String,
     @SerializedName("vote_average")
-    var voteAverage: Int,
+    var voteAverage: Double,
     @SerializedName("vote_count")
     var voteCount: Int
 )

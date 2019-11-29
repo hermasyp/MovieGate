@@ -18,9 +18,9 @@ import org.koin.core.qualifier.named
 class MoviesFragment : Fragment() {
 
     private val scopeId = "moviesListScope"
-    private val scopeName = getKoin().createScope(scopeId,named(ScopeNames.MoviesListScopes))
+    private val scopeName = getKoin().createScope(scopeId, named(ScopeNames.MoviesListScopes))
     private val moviesViewModel: MoviesViewModel by scopeName.viewModel(this)
-    private lateinit var moviesAdapter : MoviesAdapter
+    private lateinit var moviesAdapter: MoviesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,14 +33,14 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         moviesAdapter = MoviesAdapter()
-        val gridLayoutManager = GridLayoutManager(context,3)
-        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup(){
+        val gridLayoutManager = GridLayoutManager(context, 3)
+        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 val viewType = moviesAdapter.getItemViewType(position)
-                return if (viewType == moviesAdapter.MOVIE_VIEW_TYPE ) 1 else 3
+                return if (viewType == moviesAdapter.MOVIE_VIEW_TYPE) 1 else 3
             }
         }
-        rv_movies.addItemDecoration(GridSpacingItemDecoration(3,20,true))
+        rv_movies.addItemDecoration(GridSpacingItemDecoration(3, 20, true))
         rv_movies.layoutManager = gridLayoutManager
         rv_movies.setHasFixedSize(true)
         rv_movies.adapter = moviesAdapter
@@ -54,9 +54,9 @@ class MoviesFragment : Fragment() {
 
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onDestroy() {
+        super.onDestroy()
         scopeName.close()
-    }
 
+    }
 }

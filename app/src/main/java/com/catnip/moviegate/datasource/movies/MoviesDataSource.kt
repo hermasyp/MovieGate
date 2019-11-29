@@ -1,4 +1,4 @@
-package com.catnip.moviegate.datasource
+package com.catnip.moviegate.datasource.movies
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource

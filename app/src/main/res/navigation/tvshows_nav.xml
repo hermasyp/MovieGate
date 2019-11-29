@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_tvshows"
         android:name="com.catnip.moviegate.ui.main.tvshow.TvShowsFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_tab_tvshows"
         tools:layout="@layout/fragment_tvshows" />
 
 </navigation>

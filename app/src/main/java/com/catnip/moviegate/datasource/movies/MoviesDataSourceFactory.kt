@@ -1,7 +1,8 @@
-package com.catnip.moviegate.datasource
+package com.catnip.moviegate.datasource.movies
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
+import com.catnip.moviegate.datasource.movies.MoviesDataSource
 import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.network.AppScheduler
 import com.catnip.moviegate.network.RetrofitApi
@@ -20,7 +21,11 @@ class MoviesDataSourceFactory(
 
     val moviesLiveDataSource = MutableLiveData<MoviesDataSource>()
     override fun create(): DataSource<Int, Movie> {
-        val mds = MoviesDataSource(api, scheduler, compositeDisposable)
+        val mds = MoviesDataSource(
+            api,
+            scheduler,
+            compositeDisposable
+        )
         moviesLiveDataSource.postValue(mds)
         return mds
     }
