@@ -10,6 +10,7 @@ import coil.api.load
 import com.catnip.moviegate.BuildConfig
 import com.catnip.moviegate.R
 import com.catnip.moviegate.ext.textParseFromDate
+import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.model.tvshows.TvShow
 import com.catnip.moviegate.network.PaginateResultState
 import com.catnip.moviegate.utils.recyclerview.LazyLoadItemViewHolder
@@ -20,7 +21,7 @@ Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 
-class TvShowAdapter : PagedListAdapter<TvShow, RecyclerView.ViewHolder>(TvShowsDiffUtils()) {
+class TvShowAdapter(val clickListener: (TvShow?) -> Unit) : PagedListAdapter<TvShow, RecyclerView.ViewHolder>(TvShowsDiffUtils()) {
     val TVSHOW_VIEW_TYPE = 1
     val LAZY_LOAD_VIEW_TYPE = 2
     private var state: PaginateResultState? = null
@@ -31,7 +32,9 @@ class TvShowAdapter : PagedListAdapter<TvShow, RecyclerView.ViewHolder>(TvShowsD
 
         return if (viewType == TVSHOW_VIEW_TYPE) {
             view = layoutInflater.inflate(R.layout.list_item_tvshows, parent, false)
-            TvShowItemViewHolder(view)
+            TvShowItemViewHolder(view).apply {
+                itemView.setOnClickListener { clickListener(getItem(adapterPosition)) }
+            }
         } else {
             view = layoutInflater.inflate(R.layout.list_item_lazy_load, parent, false)
             LazyLoadItemViewHolder(view)

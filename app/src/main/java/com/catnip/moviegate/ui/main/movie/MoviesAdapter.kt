@@ -13,6 +13,7 @@ import com.catnip.moviegate.BuildConfig
 import com.catnip.moviegate.R
 import com.catnip.moviegate.ext.textParseFromDate
 import com.catnip.moviegate.model.movies.Movie
+import com.catnip.moviegate.model.tvshows.TvShow
 import com.catnip.moviegate.network.PaginateResultState
 import com.catnip.moviegate.utils.recyclerview.LazyLoadItemViewHolder
 import kotlinx.android.synthetic.main.list_item_lazy_load.view.*
@@ -22,7 +23,7 @@ import kotlinx.android.synthetic.main.list_item_movies.view.*
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-class MoviesAdapter : PagedListAdapter<Movie, RecyclerView.ViewHolder>(MoviesDiffUtils()) {
+class MoviesAdapter(val clickListener: (Movie?) -> Unit)  : PagedListAdapter<Movie, RecyclerView.ViewHolder>(MoviesDiffUtils()) {
 
     val MOVIE_VIEW_TYPE = 1
     val LAZY_LOAD_VIEW_TYPE = 2
@@ -35,7 +36,9 @@ class MoviesAdapter : PagedListAdapter<Movie, RecyclerView.ViewHolder>(MoviesDif
 
         return if (viewType == MOVIE_VIEW_TYPE) {
             view = layoutInflater.inflate(R.layout.list_item_movies, parent, false)
-            MovieItemViewHolder(view)
+            MovieItemViewHolder(view).apply {
+                itemView.setOnClickListener { clickListener(getItem(adapterPosition)) }
+            }
         } else {
             view = layoutInflater.inflate(R.layout.list_item_lazy_load, parent, false)
             LazyLoadItemViewHolder(view)
