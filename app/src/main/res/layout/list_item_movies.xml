@@ -2,14 +2,12 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="4dp"
     app:cardBackgroundColor="@color/baseColorCard"
     app:cardCornerRadius="8dp"
     android:clipChildren="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/baseColorCard"
         android:padding="8dp"
         android:clipChildren="true"
         android:layout_width="match_parent"
