@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.catnip.moviegate.R
 import com.catnip.moviegate.di.ScopeNames
+import com.catnip.moviegate.ui.detailtvshow.DetailTvShowActivity
 import com.catnip.moviegate.utils.recyclerview.GridSpacingItemDecoration
 import kotlinx.android.synthetic.main.fragment_tvshows.*
 import org.koin.android.ext.android.getKoin
@@ -34,7 +35,7 @@ class TvShowsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvShowAdapter = TvShowAdapter{
-            Toast.makeText(context,it?.originalName, Toast.LENGTH_SHORT).show()
+            DetailTvShowActivity.run(context,it)
         }
         val gridLayoutManager = GridLayoutManager(context, 3)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {

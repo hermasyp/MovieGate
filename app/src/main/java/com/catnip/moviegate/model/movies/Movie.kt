@@ -1,8 +1,11 @@
 package com.catnip.moviegate.model.movies
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Movie(
     @SerializedName("adult")
     var adult: Boolean,
@@ -11,7 +14,7 @@ data class Movie(
     @SerializedName("genre_ids")
     var genreIds: List<Int>,
     @SerializedName("id")
-    var id: Int,
+    var id: String,
     @SerializedName("original_language")
     var originalLanguage: String,
     @SerializedName("original_title")
@@ -32,4 +35,4 @@ data class Movie(
     var voteAverage: Double,
     @SerializedName("vote_count")
     var voteCount: Int
-)
+) : Parcelable

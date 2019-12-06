@@ -1,5 +1,6 @@
 package com.catnip.moviegate.ui.main.movie
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.catnip.moviegate.R
 import com.catnip.moviegate.di.ScopeNames
+import com.catnip.moviegate.ui.detailmovie.DetailMovieActivity
 import com.catnip.moviegate.utils.recyclerview.GridSpacingItemDecoration
 import kotlinx.android.synthetic.main.fragment_movie.*
 import org.koin.android.ext.android.getKoin
@@ -34,7 +36,7 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         moviesAdapter = MoviesAdapter {
-            Toast.makeText(context,it?.title,Toast.LENGTH_SHORT).show()
+            DetailMovieActivity.run(context,it)
         }
         val gridLayoutManager = GridLayoutManager(context, 3)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {

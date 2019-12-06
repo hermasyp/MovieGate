@@ -13,12 +13,15 @@ Github : https://github.com/hermasyp
 class DetailMovieViewModel(private val movieRepository: DetailMovieRepository) : ViewModel() {
 
     val detailMovie : LiveData<ResultState<DetailMovie>> by lazy {
-        movieRepository.fetchDetail()
+        movieRepository.detailMovieResult
     }
 
+    fun loadDetailMovie(idMovie : String){
+        movieRepository.fetchDetail(idMovie)
+    }
 
     override fun onCleared() {
         super.onCleared()
-        compositeDisposable.dispose()
+        movieRepository.onCleared()
     }
 }

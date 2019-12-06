@@ -1,8 +1,11 @@
 package com.catnip.moviegate.model.tvshows
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class TvShow(
     @SerializedName("backdrop_path")
     var backdropPath: String,
@@ -11,7 +14,7 @@ data class TvShow(
     @SerializedName("genre_ids")
     var genreIds: List<Int>,
     @SerializedName("id")
-    var id: Int,
+    var id: String,
     @SerializedName("name")
     var name: String,
     @SerializedName("origin_country")
@@ -30,4 +33,4 @@ data class TvShow(
     var voteAverage: Double,
     @SerializedName("vote_count")
     var voteCount: Int
-)
+) : Parcelable
