@@ -2,10 +2,16 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/baseColorCard"
+    app:cardCornerRadius="8dp"
+    android:clipChildren="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_margin="8dp"
+        android:background="@color/baseColorCard"
+        android:padding="8dp"
+        android:clipChildren="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -26,7 +32,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
+            android:textColor="@color/baseColorPrimaryText"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +43,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:textColor="@color/baseColorSecondaryText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
