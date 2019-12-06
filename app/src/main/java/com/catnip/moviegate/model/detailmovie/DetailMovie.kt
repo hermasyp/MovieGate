@@ -3,7 +3,7 @@ package com.catnip.moviegate.model.detailmovie
 
 import com.google.gson.annotations.SerializedName
 
-data class DetaiMovie(
+data class DetailMovie(
     @SerializedName("adult")
     var adult: Boolean,
     @SerializedName("backdrop_path")

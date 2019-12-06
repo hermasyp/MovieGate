@@ -1,6 +1,8 @@
 package com.catnip.moviegate.network
 
 import com.catnip.moviegate.BuildConfig
+import com.catnip.moviegate.model.detailmovie.DetailMovie
+import com.catnip.moviegate.model.detailtvshow.DetailTvShows
 import com.catnip.moviegate.model.movies.Movies
 import com.catnip.moviegate.model.tvshows.TvShows
 import io.reactivex.Single
@@ -11,6 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
@@ -27,6 +30,12 @@ interface RetrofitApi {
 
     @GET("/3/discover/tv")
     fun getTvShows(@Query("page") page: Int):Single<TvShows>
+
+    @GET("/3/movie/{id_movie}")
+    fun getDetailMovie(@Path("id_movie") idMovie: String):Single<DetailMovie>
+
+    @GET("/3/tv/{id_tvshow}")
+    fun getDetailTvShow(@Path("id_tvshow") idTvShow: String):Single<DetailTvShows>
 
     companion object{
         operator fun invoke() : RetrofitApi{
