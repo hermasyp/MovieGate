@@ -41,6 +41,7 @@ class DetailMovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_movie)
         setSupportActionBar(toolbar)
+        toolbar_layout.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         getIntentData()
         detailMovieViewModel.loadDetailMovie(movie.id)
@@ -67,7 +68,7 @@ class DetailMovieActivity : AppCompatActivity() {
     }
 
     private fun setDetailData(){
-        supportActionBar?.title = detailMovie.title
+        toolbar_layout.title = detailMovie.title
         supportActionBar?.subtitle = detailMovie.tagline
         txt_title_detail.text = detailMovie.title
         txt_detail_content.text = detailMovie.overview
