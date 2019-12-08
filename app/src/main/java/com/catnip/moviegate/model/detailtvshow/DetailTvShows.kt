@@ -1,6 +1,7 @@
 package com.catnip.moviegate.model.detailtvshow
 
 
+import com.catnip.moviegate.model.common.Genre
 import com.google.gson.annotations.SerializedName
 
 data class DetailTvShows(

@@ -1,4 +1,4 @@
-package com.catnip.moviegate.model.detailmovie
+package com.catnip.moviegate.model.common
 
 
 import com.google.gson.annotations.SerializedName

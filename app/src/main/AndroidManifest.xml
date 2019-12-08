@@ -31,6 +31,7 @@
                 android:value="com.catnip.moviegate.ui.main.MainActivity" />
         </activity>
         <activity
+            android:launchMode="singleTop"
             android:name=".ui.main.MainActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>

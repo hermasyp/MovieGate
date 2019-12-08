@@ -3,4 +3,5 @@
     <string name="app_name">MovieGate</string>
     <string name="title_tab_movies">Film</string>
     <string name="title_tab_tvshows">Serial Tv</string>
+    <string name="text_overview">Overview</string>
 </resources>
