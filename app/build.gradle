@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion releases.compileSdkVersion
+    buildToolsVersion releases.buildToolsVersion
+    defaultConfig {
+        applicationId releases.appId
+        minSdkVersion releases.minSdkVersion
+        targetSdkVersion releases.targetSdkVersion
+        versionCode releases.versionCode
+        versionName releases.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'BASE_API_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'BASE_POSTER_IMG_URL', '"https://image.tmdb.org/t/p/w342"'
+            buildConfigField 'String', 'API_KEY', '"18f561e5cdd33d75193dad88ac56d887"'
+        }
+        debug {
+            buildConfigField 'String', 'BASE_API_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'BASE_POSTER_IMG_URL', '"https://image.tmdb.org/t/p/w342"'
+            buildConfigField 'String', 'API_KEY', '"18f561e5cdd33d75193dad88ac56d887"'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.projects.kotlin
+    implementation deps.android.appCompat
+    implementation deps.android.ktx
+    implementation deps.android.materials
+    implementation deps.android.constraintLayout
+    implementation deps.android.recyclerview
+    implementation deps.android.cardView
+
+    implementation deps.navigation.lifecycleExt
+    implementation deps.navigation.navUI
+    implementation deps.navigation.navUIKtx
+    implementation deps.navigation.navFragment
+    implementation deps.navigation.navFragmentKtx
+
+    implementation deps.fragmentx.fragment
+    implementation deps.fragmentx.fragmentKtx
+
+    implementation deps.paging.pagingRuntime
+
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.gsonConverter
+    implementation deps.retrofit.rxAdapter
+    implementation deps.retrofit.okHttpLogging
+
+    implementation deps.gson.gson
+
+    implementation deps.rxjava.rxjava
+    implementation deps.rxjava.rxAndroid
+
+    implementation deps.koin.koin
+    implementation deps.koin.koinScope
+    implementation deps.koin.koinViewModel
+
+    implementation deps.coil.coil
+
+
+    testImplementation deps.testing.jUnit
+    androidTestImplementation deps.testing.testRunner
+    androidTestImplementation deps.testing.espresso
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movies_nav"
+    app:startDestination="@+id/navigation_movie">
+    <fragment
+        android:id="@+id/navigation_movie"
+        android:name="com.catnip.moviegate.ui.main.movie.MoviesFragment"
+        android:label="@string/title_tab_movies"
+        tools:layout="@layout/fragment_movie" />
+</navigation>
