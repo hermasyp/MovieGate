@@ -36,6 +36,8 @@ class DetailMovieActivity : AppCompatActivity() {
     private val detailMovieViewModel: DetailMovieViewModel by scopeName.viewModel(this)
     private lateinit var movie: Movie
     private lateinit var detailMovie: DetailMovie
+    private val TAG = DetailMovieActivity::class.java.simpleName
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,15 +50,15 @@ class DetailMovieActivity : AppCompatActivity() {
         detailMovieViewModel.detailMovie.observe(this) {
             when (it) {
                 is ResultState.Progress -> {
-                    d(DetailMovieActivity::class.java.simpleName, "On progress")
+                    d(TAG, "On progress")
                 }
                 is ResultState.Success -> {
-                    d(DetailMovieActivity::class.java.simpleName, it.data.title)
+                    d(TAG ,it.data.title)
                     this.detailMovie = it.data
                     setDetailData()
                 }
                 is ResultState.Failure -> {
-                    d(DetailMovieActivity::class.java.simpleName, "Error")
+                    d(TAG, "Error")
                 }
             }
 

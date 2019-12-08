@@ -4,4 +4,5 @@
     <string name="title_tab_movies">Movies</string>
     <string name="title_tab_tvshows">Tv Shows</string>
     <string name="text_overview">Overview</string>
+    <string name="txt_change_language">Change Language</string>
 </resources>
