@@ -5,6 +5,8 @@ import androidx.paging.PageKeyedDataSource
 import com.catnip.moviegate.base.Constants.Companion.FIRST_PAGE
 import com.catnip.moviegate.ext.addTo
 import com.catnip.moviegate.ext.performOnBackOutOnMain
+import com.catnip.moviegate.model.common.Results
+import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.model.tvshows.TvShow
 import com.catnip.moviegate.network.PaginateResultState
 import com.catnip.moviegate.network.RetrofitApi
@@ -20,14 +22,14 @@ class TvShowsDataSource(
     private val api: RetrofitApi,
     private val scheduler: Scheduler,
     private val compositeDisposable: CompositeDisposable
-) : PageKeyedDataSource<Int, TvShow>() {
+) : PageKeyedDataSource<Int, Content>() {
 
     val state: MutableLiveData<PaginateResultState> = MutableLiveData()
 
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, TvShow>
+        callback: LoadInitialCallback<Int, Content>
     ) {
         state.postValue(PaginateResultState.LOADING)
         api.getTvShows(FIRST_PAGE)
@@ -35,7 +37,7 @@ class TvShowsDataSource(
             .subscribe(
                 {
                     state.postValue(PaginateResultState.LOADED)
-                    callback.onResult(it.results, null, FIRST_PAGE + 1)
+                    callback.onResult(it.datas, null, FIRST_PAGE + 1)
                 },
                 {
                     state.postValue(PaginateResultState.ERROR)
@@ -43,14 +45,14 @@ class TvShowsDataSource(
             ).addTo(compositeDisposable)
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, TvShow>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Content>) {
         state.postValue(PaginateResultState.LOADING)
         api.getTvShows(params.key)
             .performOnBackOutOnMain(scheduler)
             .subscribe(
                 {
                     if (it.totalPages >= params.key) {
-                        callback.onResult(it.results, params.key + 1)
+                        callback.onResult(it.datas, params.key + 1)
                         state.postValue(PaginateResultState.LOADED)
                     } else {
                         state.postValue(PaginateResultState.EOF)
@@ -62,7 +64,7 @@ class TvShowsDataSource(
             ).addTo(compositeDisposable)
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, TvShow>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Content>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

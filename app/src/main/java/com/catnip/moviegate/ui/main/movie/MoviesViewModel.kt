@@ -3,6 +3,7 @@ package com.catnip.moviegate.ui.main.movie
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
+import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.network.PaginateResultState
 import io.reactivex.disposables.CompositeDisposable
@@ -10,7 +11,7 @@ import io.reactivex.disposables.CompositeDisposable
 class MoviesViewModel(private val repository: MoviesRepository,
                       private val compositeDisposable: CompositeDisposable) : ViewModel() {
 
-    val movies : LiveData<PagedList<Movie>> by lazy {
+    val movies : LiveData<PagedList<Content>> by lazy {
         repository.fetchMovies()
     }
 

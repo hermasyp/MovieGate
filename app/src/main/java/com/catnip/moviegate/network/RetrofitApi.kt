@@ -1,6 +1,8 @@
 package com.catnip.moviegate.network
 
 import com.catnip.moviegate.BuildConfig
+import com.catnip.moviegate.model.common.Results
+import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.model.detailmovie.DetailMovie
 import com.catnip.moviegate.model.detailtvshow.DetailTvShows
 import com.catnip.moviegate.model.movies.Movies
@@ -26,10 +28,10 @@ interface RetrofitApi {
     //TODO : api interface will written in here.
 
     @GET("/3/discover/movie")
-    fun getMovies(@Query("page") page: Int):Single<Movies>
+    fun getMovies(@Query("page") page: Int):Single<Results<Content>>
 
     @GET("/3/discover/tv")
-    fun getTvShows(@Query("page") page: Int):Single<TvShows>
+    fun getTvShows(@Query("page") page: Int):Single<Results<Content>>
 
     @GET("/3/movie/{id_movie}")
     fun getDetailMovie(@Path("id_movie") idMovie: String):Single<DetailMovie>
@@ -54,7 +56,7 @@ interface RetrofitApi {
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(authInterceptor)
-                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                //.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)

@@ -5,4 +5,6 @@
     <string name="title_tab_tvshows">Tv Shows</string>
     <string name="text_overview">Overview</string>
     <string name="txt_change_language">Change Language</string>
+    <string name="txt_favorited_movies">Favorited Movies</string>
+    <string name="txt_top_movies">Top Movies</string>
 </resources>

@@ -2,6 +2,7 @@ package com.catnip.moviegate.datasource.tvshows
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
+import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.model.tvshows.TvShow
 import com.catnip.moviegate.network.AppScheduler
 import com.catnip.moviegate.network.RetrofitApi
@@ -16,10 +17,10 @@ class TvShowsDataSourceFactory (
     private val api: RetrofitApi,
     private val scheduler: AppScheduler,
     private val compositeDisposable: CompositeDisposable
-) : DataSource.Factory<Int, TvShow>(){
+) : DataSource.Factory<Int, Content>(){
     val tvshowLiveDataSource = MutableLiveData<TvShowsDataSource>()
 
-    override fun create(): DataSource<Int, TvShow> {
+    override fun create(): DataSource<Int, Content> {
         val tds = TvShowsDataSource(api,scheduler,compositeDisposable)
         tvshowLiveDataSource.postValue(tds)
         return tds

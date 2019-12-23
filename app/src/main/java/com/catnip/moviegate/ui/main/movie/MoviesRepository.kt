@@ -5,8 +5,11 @@ import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.catnip.moviegate.base.Constants
+import com.catnip.moviegate.datasource.contents.ContentsDataSource
+import com.catnip.moviegate.datasource.contents.ContentsDataSourceFactory
 import com.catnip.moviegate.datasource.movies.MoviesDataSource
 import com.catnip.moviegate.datasource.movies.MoviesDataSourceFactory
+import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.network.PaginateResultState
 
@@ -16,15 +19,15 @@ Github : https://github.com/hermasyp
  **/
 
 class MoviesRepository(private val factory: MoviesDataSourceFactory) {
-    lateinit var moviesPagedList: LiveData<PagedList<Movie>>
+    lateinit var contentsPagedList: LiveData<PagedList<Content>>
 
-    fun fetchMovies() : LiveData<PagedList<Movie>>{
+    fun fetchMovies() : LiveData<PagedList<Content>>{
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
             .setPageSize(Constants.ITEM_PER_PAGE)
             .build()
-        moviesPagedList = LivePagedListBuilder(factory,config).build()
-        return moviesPagedList
+        contentsPagedList = LivePagedListBuilder(factory,config).build()
+        return contentsPagedList
     }
 
     fun getFetchState(): LiveData<PaginateResultState>{

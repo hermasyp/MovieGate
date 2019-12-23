@@ -10,8 +10,7 @@ import coil.api.load
 import com.catnip.moviegate.BuildConfig
 import com.catnip.moviegate.R
 import com.catnip.moviegate.ext.textParseFromDate
-import com.catnip.moviegate.model.movies.Movie
-import com.catnip.moviegate.model.tvshows.TvShow
+import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.network.PaginateResultState
 import com.catnip.moviegate.utils.recyclerview.LazyLoadItemViewHolder
 import kotlinx.android.synthetic.main.list_item_tvshows.view.*
@@ -21,7 +20,7 @@ Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 
-class TvShowAdapter(val clickListener: (TvShow?) -> Unit) : PagedListAdapter<TvShow, RecyclerView.ViewHolder>(TvShowsDiffUtils()) {
+class TvShowAdapter(val clickListener: (Content?) -> Unit) : PagedListAdapter<Content, RecyclerView.ViewHolder>(TvShowsDiffUtils()) {
     val TVSHOW_VIEW_TYPE = 1
     val LAZY_LOAD_VIEW_TYPE = 2
     private var state: PaginateResultState? = null
@@ -65,21 +64,21 @@ class TvShowAdapter(val clickListener: (TvShow?) -> Unit) : PagedListAdapter<TvS
         }
     }
 
-    class TvShowsDiffUtils : DiffUtil.ItemCallback<TvShow>() {
-        override fun areItemsTheSame(oldItem: TvShow, newItem: TvShow): Boolean {
+    class TvShowsDiffUtils : DiffUtil.ItemCallback<Content>() {
+        override fun areItemsTheSame(oldItem: Content, newItem: Content): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: TvShow, newItem: TvShow): Boolean {
+        override fun areContentsTheSame(oldItem: Content, newItem: Content): Boolean {
             return oldItem == newItem
         }
 
     }
 
     class TvShowItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        fun bind(tvshow: TvShow?) {
-            itemView.txt_title_content.text = tvshow?.originalName
-            itemView.txt_year_content.textParseFromDate(tvshow?.firstAirDate)
+        fun bind(tvshow: Content?) {
+            itemView.txt_title_content.text = tvshow?.originalTitle
+            itemView.txt_year_content.textParseFromDate(tvshow?.releaseDate)
             itemView.img_poster.load(BuildConfig.BASE_POSTER_IMG_URL + tvshow?.posterPath)
         }
     }

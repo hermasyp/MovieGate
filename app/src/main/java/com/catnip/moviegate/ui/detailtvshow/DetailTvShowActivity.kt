@@ -10,6 +10,7 @@ import coil.api.load
 import com.catnip.moviegate.BuildConfig
 import com.catnip.moviegate.R
 import com.catnip.moviegate.di.ScopeNames
+import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.model.detailtvshow.DetailTvShows
 import com.catnip.moviegate.model.tvshows.TvShow
 import com.catnip.moviegate.network.ResultState
@@ -23,7 +24,7 @@ import org.koin.core.qualifier.named
 class DetailTvShowActivity : AppCompatActivity() {
     companion object {
         const val ARG_TVSHOW_PARCELABLE = "TVSHOW"
-        fun run(context: Context?, tvShow: TvShow?) {
+        fun run(context: Context?, tvShow: Content?) {
             val intent = Intent(context, DetailTvShowActivity::class.java)
             intent.putExtra(ARG_TVSHOW_PARCELABLE, tvShow)
             context?.startActivity(intent)
@@ -33,7 +34,7 @@ class DetailTvShowActivity : AppCompatActivity() {
     private val scopeId = "detailTvShowsScope"
     private val scopeName = getKoin().createScope(scopeId, named(ScopeNames.DetailTvShowScopes))
     private val detailTvShowViewModel: DetailTvShowViewModel by scopeName.viewModel(this)
-    private lateinit var tvShow: TvShow
+    private lateinit var tvShow: Content
     private lateinit var detailTvShow: DetailTvShows
     private val TAG = DetailTvShowActivity::class.java.simpleName
 

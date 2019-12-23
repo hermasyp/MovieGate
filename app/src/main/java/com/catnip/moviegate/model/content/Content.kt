@@ -1,28 +1,29 @@
-package com.catnip.moviegate.model.tvshows
-
+package com.catnip.moviegate.model.content
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
+/**
+Written with love by Muhammad Hermas Yuda Pamungkas
+Github : https://github.com/hermasyp
+ **/
 @Parcelize
-data class TvShow(
-    @SerializedName("backdrop_path")
-    var backdropPath: String,
-    @SerializedName("first_air_date")
-    var firstAirDate: String,
-    @SerializedName("genre_ids")
-    var genreIds: List<Int>,
+data class Content (
     @SerializedName("id")
     var id: String,
-    @SerializedName("name")
-    var name: String,
-    @SerializedName("origin_country")
-    var originCountry: List<String>,
+    @SerializedName(value = "title", alternate = ["name"])
+    var title: String,
+    @SerializedName(value = "original_title",alternate = ["original_name"])
+    var originalTitle: String,
+    @SerializedName(value = "release_date",alternate = ["first_air_date"])
+    var releaseDate: String,
+    @SerializedName("backdrop_path")
+    var backdropPath: String,
+    @SerializedName("genre_ids")
+    var genreIds: List<Int>,
     @SerializedName("original_language")
     var originalLanguage: String,
-    @SerializedName("original_name")
-    var originalName: String,
     @SerializedName("overview")
     var overview: String,
     @SerializedName("popularity")
@@ -34,3 +35,4 @@ data class TvShow(
     @SerializedName("vote_count")
     var voteCount: Int
 ) : Parcelable
+

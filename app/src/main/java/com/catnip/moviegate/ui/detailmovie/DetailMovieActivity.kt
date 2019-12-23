@@ -11,6 +11,7 @@ import coil.api.load
 import com.catnip.moviegate.BuildConfig
 import com.catnip.moviegate.R
 import com.catnip.moviegate.di.ScopeNames
+import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.model.detailmovie.DetailMovie
 import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.network.ResultState
@@ -24,7 +25,7 @@ import org.koin.core.qualifier.named
 class DetailMovieActivity : AppCompatActivity() {
     companion object {
         const val ARG_MOVIE_PARCELABLE = "MOVIE"
-        fun run(context: Context?, movie: Movie?) {
+        fun run(context: Context?, movie: Content?) {
             val intent = Intent(context, DetailMovieActivity::class.java)
             intent.putExtra(ARG_MOVIE_PARCELABLE, movie)
             context?.startActivity(intent)
@@ -34,7 +35,7 @@ class DetailMovieActivity : AppCompatActivity() {
     private val scopeId = "detailMovieScope"
     private val scopeName = getKoin().createScope(scopeId, named(ScopeNames.DetailMovieScopes))
     private val detailMovieViewModel: DetailMovieViewModel by scopeName.viewModel(this)
-    private lateinit var movie: Movie
+    private lateinit var movie: Content
     private lateinit var detailMovie: DetailMovie
     private val TAG = DetailMovieActivity::class.java.simpleName
 
@@ -70,9 +71,9 @@ class DetailMovieActivity : AppCompatActivity() {
     }
 
     private fun setDetailData(){
-        toolbar_layout.title = detailMovie.title
+        toolbar_layout.title = detailMovie.originalTitle
         supportActionBar?.subtitle = detailMovie.tagline
-        txt_title_detail.text = detailMovie.title
+        txt_title_detail.text = detailMovie.originalTitle
         txt_detail_content.text = detailMovie.overview
         txt_genre_content.text = GenreGenerator.getAllGenre(detailMovie.genres)
         rating_view.rating = (detailMovie.voteAverage.div(2)).toFloat()
