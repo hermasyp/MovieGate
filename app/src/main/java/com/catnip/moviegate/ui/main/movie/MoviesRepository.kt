@@ -5,12 +5,9 @@ import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.catnip.moviegate.base.Constants
-import com.catnip.moviegate.datasource.contents.ContentsDataSource
-import com.catnip.moviegate.datasource.contents.ContentsDataSourceFactory
 import com.catnip.moviegate.datasource.movies.MoviesDataSource
 import com.catnip.moviegate.datasource.movies.MoviesDataSourceFactory
 import com.catnip.moviegate.model.content.Content
-import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.network.PaginateResultState
 
 /**

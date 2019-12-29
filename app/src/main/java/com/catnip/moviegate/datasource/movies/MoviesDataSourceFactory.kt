@@ -2,9 +2,7 @@ package com.catnip.moviegate.datasource.movies
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
-import com.catnip.moviegate.datasource.movies.MoviesDataSource
 import com.catnip.moviegate.model.content.Content
-import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.network.AppScheduler
 import com.catnip.moviegate.network.RetrofitApi
 import io.reactivex.disposables.CompositeDisposable

@@ -3,7 +3,6 @@ package com.catnip.moviegate.datasource.tvshows
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.catnip.moviegate.model.content.Content
-import com.catnip.moviegate.model.tvshows.TvShow
 import com.catnip.moviegate.network.AppScheduler
 import com.catnip.moviegate.network.RetrofitApi
 import io.reactivex.disposables.CompositeDisposable

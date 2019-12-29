@@ -13,7 +13,6 @@ import com.catnip.moviegate.R
 import com.catnip.moviegate.di.ScopeNames
 import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.model.detailmovie.DetailMovie
-import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.network.ResultState
 import com.catnip.moviegate.utils.genre.GenreGenerator
 import kotlinx.android.synthetic.main.activity_detail_movie.*

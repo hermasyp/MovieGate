@@ -1,6 +1,5 @@
 package com.catnip.moviegate.di
 
-import com.catnip.moviegate.datasource.contents.ContentsDataSourceFactory
 import com.catnip.moviegate.datasource.detailmovies.DetailMovieDataSource
 import com.catnip.moviegate.datasource.detailmovies.DetailTVShowDataSource
 import com.catnip.moviegate.datasource.movies.MoviesDataSourceFactory

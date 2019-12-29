@@ -5,12 +5,9 @@ import com.catnip.moviegate.model.common.Results
 import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.model.detailmovie.DetailMovie
 import com.catnip.moviegate.model.detailtvshow.DetailTvShows
-import com.catnip.moviegate.model.movies.Movies
-import com.catnip.moviegate.model.tvshows.TvShows
 import io.reactivex.Single
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

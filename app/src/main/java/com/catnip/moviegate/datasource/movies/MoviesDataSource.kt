@@ -6,7 +6,6 @@ import com.catnip.moviegate.base.Constants.Companion.FIRST_PAGE
 import com.catnip.moviegate.ext.addTo
 import com.catnip.moviegate.ext.performOnBackOutOnMain
 import com.catnip.moviegate.model.content.Content
-import com.catnip.moviegate.model.movies.Movie
 import com.catnip.moviegate.network.*
 import io.reactivex.disposables.CompositeDisposable
 

@@ -12,7 +12,6 @@ import com.catnip.moviegate.R
 import com.catnip.moviegate.di.ScopeNames
 import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.model.detailtvshow.DetailTvShows
-import com.catnip.moviegate.model.tvshows.TvShow
 import com.catnip.moviegate.network.ResultState
 import com.catnip.moviegate.utils.genre.GenreGenerator
 import kotlinx.android.synthetic.main.activity_detail_tv_show.*

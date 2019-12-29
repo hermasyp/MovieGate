@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import com.catnip.moviegate.model.content.Content
-import com.catnip.moviegate.model.tvshows.TvShow
 import com.catnip.moviegate.network.PaginateResultState
 import io.reactivex.disposables.CompositeDisposable
 
