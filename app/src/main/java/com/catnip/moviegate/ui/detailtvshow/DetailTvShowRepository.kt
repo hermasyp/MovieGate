@@ -1,12 +1,10 @@
 package com.catnip.moviegate.ui.detailtvshow
 
 import androidx.lifecycle.LiveData
-import com.catnip.moviegate.datasource.detailmovies.DetailMovieDataSource
-import com.catnip.moviegate.datasource.detailmovies.DetailTVShowDataSource
+import com.catnip.moviegate.data.datasource.detailmovies.DetailTVShowDataSource
 import com.catnip.moviegate.ext.toLiveData
-import com.catnip.moviegate.model.detailmovie.DetailMovie
 import com.catnip.moviegate.model.detailtvshow.DetailTvShows
-import com.catnip.moviegate.network.ResultState
+import com.catnip.moviegate.data.network.ResultState
 import io.reactivex.disposables.CompositeDisposable
 
 /**

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log.d
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
 import coil.api.load
@@ -13,7 +12,7 @@ import com.catnip.moviegate.R
 import com.catnip.moviegate.di.ScopeNames
 import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.model.detailmovie.DetailMovie
-import com.catnip.moviegate.network.ResultState
+import com.catnip.moviegate.data.network.ResultState
 import com.catnip.moviegate.utils.genre.GenreGenerator
 import kotlinx.android.synthetic.main.activity_detail_movie.*
 import kotlinx.android.synthetic.main.content_detail_movie.*

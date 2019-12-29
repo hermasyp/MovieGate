@@ -1,4 +1,4 @@
-package com.catnip.moviegate.network
+package com.catnip.moviegate.data.network
 
 import com.catnip.moviegate.BuildConfig
 import com.catnip.moviegate.model.common.Results
@@ -39,7 +39,7 @@ interface RetrofitApi {
     companion object{
         operator fun invoke() : RetrofitApi{
             val authInterceptor = Interceptor {chain->
-                val newUrl = chain.request().url()
+                val newUrl = chain.request().url
                     .newBuilder()
                     .addQueryParameter("api_key",BuildConfig.API_KEY)
                     .addQueryParameter("language","en-US")

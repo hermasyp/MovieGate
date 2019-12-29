@@ -1,6 +1,6 @@
 package com.catnip.moviegate.ext
 
-import com.catnip.moviegate.network.Scheduler
+import com.catnip.moviegate.data.network.Scheduler
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable

@@ -1,4 +1,4 @@
-package com.catnip.moviegate.network
+package com.catnip.moviegate.data.network
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas

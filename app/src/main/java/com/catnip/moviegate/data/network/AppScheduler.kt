@@ -1,4 +1,4 @@
-package com.catnip.moviegate.network
+package com.catnip.moviegate.data.network
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

@@ -2,7 +2,7 @@ package com.catnip.moviegate.utils.recyclerview
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.catnip.moviegate.network.PaginateResultState
+import com.catnip.moviegate.data.network.PaginateResultState
 import kotlinx.android.synthetic.main.list_item_lazy_load.view.*
 
 /**

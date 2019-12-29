@@ -11,7 +11,7 @@ import com.catnip.moviegate.BuildConfig
 import com.catnip.moviegate.R
 import com.catnip.moviegate.ext.textParseFromDate
 import com.catnip.moviegate.model.content.Content
-import com.catnip.moviegate.network.PaginateResultState
+import com.catnip.moviegate.data.network.PaginateResultState
 import com.catnip.moviegate.utils.recyclerview.LazyLoadItemViewHolder
 import kotlinx.android.synthetic.main.list_item_tvshows.view.*
 

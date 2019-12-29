@@ -1,4 +1,4 @@
-package com.catnip.moviegate.datasource.movies
+package com.catnip.moviegate.data.datasource.movies
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
@@ -6,7 +6,7 @@ import com.catnip.moviegate.base.Constants.Companion.FIRST_PAGE
 import com.catnip.moviegate.ext.addTo
 import com.catnip.moviegate.ext.performOnBackOutOnMain
 import com.catnip.moviegate.model.content.Content
-import com.catnip.moviegate.network.*
+import com.catnip.moviegate.data.network.*
 import io.reactivex.disposables.CompositeDisposable
 
 /**

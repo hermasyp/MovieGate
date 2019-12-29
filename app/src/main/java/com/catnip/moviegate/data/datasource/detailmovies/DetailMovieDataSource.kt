@@ -1,10 +1,10 @@
-package com.catnip.moviegate.datasource.detailmovies
+package com.catnip.moviegate.data.datasource.detailmovies
 
 import com.catnip.moviegate.ext.*
-import com.catnip.moviegate.model.detailtvshow.DetailTvShows
-import com.catnip.moviegate.network.AppScheduler
-import com.catnip.moviegate.network.ResultState
-import com.catnip.moviegate.network.RetrofitApi
+import com.catnip.moviegate.model.detailmovie.DetailMovie
+import com.catnip.moviegate.data.network.AppScheduler
+import com.catnip.moviegate.data.network.ResultState
+import com.catnip.moviegate.data.network.RetrofitApi
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 
@@ -12,17 +12,17 @@ import io.reactivex.subjects.PublishSubject
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-class DetailTVShowDataSource (
+class DetailMovieDataSource (
     private val api: RetrofitApi,
     private val scheduler: AppScheduler,
     private val compositeDisposable: CompositeDisposable) {
 
-    val detailResult : PublishSubject<ResultState<DetailTvShows>> =
-        PublishSubject.create<ResultState<DetailTvShows>>()
+    val detailResult : PublishSubject<ResultState<DetailMovie>> =
+        PublishSubject.create<ResultState<DetailMovie>>()
 
-    fun fetchDetailTvShow(idTvShows : String){
+    fun fetchDetailMovie(idMovie : String){
         detailResult.loading(true)
-        api.getDetailTvShow(idTvShows)
+        api.getDetailMovie(idMovie)
             .performOnBackOutOnMain(scheduler)
             .subscribe(
                 {

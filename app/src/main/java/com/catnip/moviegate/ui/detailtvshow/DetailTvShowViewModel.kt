@@ -3,7 +3,7 @@ package com.catnip.moviegate.ui.detailtvshow
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.catnip.moviegate.model.detailtvshow.DetailTvShows
-import com.catnip.moviegate.network.ResultState
+import com.catnip.moviegate.data.network.ResultState
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas

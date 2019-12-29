@@ -1,15 +1,17 @@
 package com.catnip.moviegate.di
 
-import com.catnip.moviegate.datasource.detailmovies.DetailMovieDataSource
-import com.catnip.moviegate.datasource.detailmovies.DetailTVShowDataSource
-import com.catnip.moviegate.datasource.movies.MoviesDataSourceFactory
-import com.catnip.moviegate.datasource.tvshows.TvShowsDataSourceFactory
+import androidx.room.Room
+import com.catnip.moviegate.data.datasource.detailmovies.DetailMovieDataSource
+import com.catnip.moviegate.data.datasource.detailmovies.DetailTVShowDataSource
+import com.catnip.moviegate.data.datasource.movies.MoviesDataSourceFactory
+import com.catnip.moviegate.data.datasource.tvshows.TvShowsDataSourceFactory
+import com.catnip.moviegate.data.local.database.AppDatabase
 import com.catnip.moviegate.di.ScopeNames.DetailMovieScopes
 import com.catnip.moviegate.di.ScopeNames.DetailTvShowScopes
 import com.catnip.moviegate.di.ScopeNames.MoviesListScopes
 import com.catnip.moviegate.di.ScopeNames.TvShowsListScopes
-import com.catnip.moviegate.network.AppScheduler
-import com.catnip.moviegate.network.RetrofitApi
+import com.catnip.moviegate.data.network.AppScheduler
+import com.catnip.moviegate.data.network.RetrofitApi
 import com.catnip.moviegate.ui.detailmovie.DetailMovieRepository
 import com.catnip.moviegate.ui.detailmovie.DetailMovieViewModel
 import com.catnip.moviegate.ui.detailtvshow.DetailTvShowRepository
@@ -34,11 +36,14 @@ object ScopeNames {
     const val DetailMovieScopes = "DetailMovieActivity"
     const val DetailTvShowScopes = "DetailTvShowActivity"
 }
+val databaseModule = module{
+    single { Room.databaseBuilder(get(), AppDatabase::class.java, AppDatabase.DBNAME).build() }
+    single { get<AppDatabase>().favoriteDao() }
+}
 
 val networkModule = module {
     single { RetrofitApi() }
     single { AppScheduler() }
-
 }
 
 val scopesModule = module {

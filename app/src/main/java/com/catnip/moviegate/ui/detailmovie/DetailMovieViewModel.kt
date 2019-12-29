@@ -3,8 +3,7 @@ package com.catnip.moviegate.ui.detailmovie
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.catnip.moviegate.model.detailmovie.DetailMovie
-import com.catnip.moviegate.network.ResultState
-import io.reactivex.disposables.CompositeDisposable
+import com.catnip.moviegate.data.network.ResultState
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas

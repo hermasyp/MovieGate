@@ -1,11 +1,10 @@
 package com.catnip.moviegate.ui.main.tvshow
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import com.catnip.moviegate.model.content.Content
-import com.catnip.moviegate.network.PaginateResultState
+import com.catnip.moviegate.data.network.PaginateResultState
 import io.reactivex.disposables.CompositeDisposable
 
 class TvShowsViewModel(private val repository: TvShowsRepository,

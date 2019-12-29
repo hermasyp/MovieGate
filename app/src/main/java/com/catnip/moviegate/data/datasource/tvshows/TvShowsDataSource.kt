@@ -1,4 +1,4 @@
-package com.catnip.moviegate.datasource.tvshows
+package com.catnip.moviegate.data.datasource.tvshows
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
@@ -6,9 +6,9 @@ import com.catnip.moviegate.base.Constants.Companion.FIRST_PAGE
 import com.catnip.moviegate.ext.addTo
 import com.catnip.moviegate.ext.performOnBackOutOnMain
 import com.catnip.moviegate.model.content.Content
-import com.catnip.moviegate.network.PaginateResultState
-import com.catnip.moviegate.network.RetrofitApi
-import com.catnip.moviegate.network.Scheduler
+import com.catnip.moviegate.data.network.PaginateResultState
+import com.catnip.moviegate.data.network.RetrofitApi
+import com.catnip.moviegate.data.network.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 
 /**
