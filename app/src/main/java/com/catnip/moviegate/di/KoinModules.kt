@@ -36,8 +36,14 @@ object ScopeNames {
     const val DetailMovieScopes = "DetailMovieActivity"
     const val DetailTvShowScopes = "DetailTvShowActivity"
 }
-val databaseModule = module{
-    single { Room.databaseBuilder(get(), AppDatabase::class.java, AppDatabase.DBNAME).build() }
+
+val databaseModule = module {
+    single {
+        Room.databaseBuilder(get(), AppDatabase::class.java, AppDatabase.DBNAME)
+            .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
+            .build()
+    }
     single { get<AppDatabase>().favoriteDao() }
 }
 
