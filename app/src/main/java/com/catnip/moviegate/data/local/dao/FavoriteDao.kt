@@ -3,6 +3,7 @@ package com.catnip.moviegate.data.local.dao
 import androidx.room.*
 import com.catnip.moviegate.data.local.entity.ContentType
 import com.catnip.moviegate.data.local.entity.Favorite
+import io.reactivex.Completable
 import io.reactivex.Single
 
 /**
@@ -16,12 +17,12 @@ Github : https://github.com/hermasyp
 interface FavoriteDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun saveFavorite(favorite: Favorite)
+    fun insert(favorite: Favorite) : Completable
 
     @Delete
-    fun deleteFavorite(favorite: Favorite)
+    fun delete(favorite: Favorite) : Completable
 
     @Query("SELECT * FROM favorites where type = :contentType")
-    fun getAllFavoriteByType(contentType: String): Single<MutableList<Favorite>>
+    fun getAll(contentType: String): Single<MutableList<Favorite>>
 
 }

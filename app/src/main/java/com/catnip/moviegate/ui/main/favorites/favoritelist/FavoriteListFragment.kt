@@ -19,21 +19,17 @@ class FavoriteListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        favoriteListViewModel = ViewModelProviders.of(this).get(FavoriteListViewModel::class.java).apply {
-            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
-        }
+        favoriteListViewModel =
+            ViewModelProviders.of(this).get(FavoriteListViewModel::class.java).apply {
+
+            }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_tab_favorite, container, false)
-        val textView: TextView = root.findViewById(R.id.section_label)
-        favoriteListViewModel.text.observe(this, Observer<String> {
-            textView.text = it
-        })
-        return root
+        return inflater.inflate(R.layout.fragment_tab_favorite, container, false)
     }
 
     companion object {
@@ -51,10 +47,10 @@ class FavoriteListFragment : Fragment() {
         fun newInstance(sectionNumber: Int): FavoriteListFragment {
             return FavoriteListFragment()
                 .apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_SECTION_NUMBER, sectionNumber)
+                    arguments = Bundle().apply {
+                        putInt(ARG_SECTION_NUMBER, sectionNumber)
+                    }
                 }
-            }
         }
     }
 }

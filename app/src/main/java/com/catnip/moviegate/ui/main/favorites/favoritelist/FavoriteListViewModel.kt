@@ -4,15 +4,31 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.catnip.moviegate.data.local.entity.Favorite
+import com.catnip.moviegate.data.network.ResultState
 
-class FavoriteListViewModel : ViewModel() {
+class FavoriteListViewModel(private val repository: FavoriteListRepository) : ViewModel() {
 
-    private val _index = MutableLiveData<Int>()
-    val text: LiveData<String> = Transformations.map(_index) {
-        "Hello world from section: $it"
+    val saveResult : LiveData<ResultState<Boolean>> by lazy {
+        repository.saveResult
+    }
+    val deleteResult : LiveData<ResultState<Boolean>> by lazy {
+        repository.deleteResult
+    }
+    val favoriteResult : LiveData<ResultState<MutableList<Favorite>>> by lazy {
+        repository.favoriteResult
     }
 
-    fun setIndex(index: Int) {
-        _index.value = index
+    fun saveFavorite(favorite: Favorite) {
+        repository.saveFavorite(favorite)
     }
+
+    fun deleteFavorite(favorite: Favorite) {
+        repository.deleteFavorite(favorite)
+    }
+
+    fun getFavorite(contentType: String) {
+        repository.getFavorite(contentType)
+    }
+
 }
