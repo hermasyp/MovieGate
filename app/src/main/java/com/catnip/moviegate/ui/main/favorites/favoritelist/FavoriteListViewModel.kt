@@ -31,4 +31,8 @@ class FavoriteListViewModel(private val repository: FavoriteListRepository) : Vi
         repository.getFavorite(contentType)
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        repository.onCleared()
+    }
 }

@@ -5,6 +5,7 @@ import com.catnip.moviegate.data.datasource.detailmovies.DetailMovieDataSource
 import com.catnip.moviegate.data.datasource.detailmovies.DetailTVShowDataSource
 import com.catnip.moviegate.data.datasource.movies.MoviesDataSourceFactory
 import com.catnip.moviegate.data.datasource.tvshows.TvShowsDataSourceFactory
+import com.catnip.moviegate.data.local.dao.FavoriteDataSource
 import com.catnip.moviegate.data.local.database.AppDatabase
 import com.catnip.moviegate.di.ScopeNames.DetailMovieScopes
 import com.catnip.moviegate.di.ScopeNames.DetailTvShowScopes
@@ -12,10 +13,13 @@ import com.catnip.moviegate.di.ScopeNames.MoviesListScopes
 import com.catnip.moviegate.di.ScopeNames.TvShowsListScopes
 import com.catnip.moviegate.data.network.AppScheduler
 import com.catnip.moviegate.data.network.RetrofitApi
+import com.catnip.moviegate.di.ScopeNames.FavoriteListScope
 import com.catnip.moviegate.ui.detailmovie.DetailMovieRepository
 import com.catnip.moviegate.ui.detailmovie.DetailMovieViewModel
 import com.catnip.moviegate.ui.detailtvshow.DetailTvShowRepository
 import com.catnip.moviegate.ui.detailtvshow.DetailTvShowViewModel
+import com.catnip.moviegate.ui.main.favorites.favoritelist.FavoriteListRepository
+import com.catnip.moviegate.ui.main.favorites.favoritelist.FavoriteListViewModel
 import com.catnip.moviegate.ui.main.movie.MoviesRepository
 import com.catnip.moviegate.ui.main.movie.MoviesViewModel
 import com.catnip.moviegate.ui.main.tvshow.TvShowsRepository
@@ -31,6 +35,7 @@ Github : https://github.com/hermasyp
  **/
 
 object ScopeNames {
+    const val FavoriteListScope = "FavoriteListFragment"
     const val MoviesListScopes = "MoviesFragment"
     const val TvShowsListScopes = "TvShowsFragment"
     const val DetailMovieScopes = "DetailMovieActivity"
@@ -102,4 +107,18 @@ val scopesModule = module {
         }
         viewModel { DetailTvShowViewModel(get()) }
     }
+
+    scope(named(FavoriteListScope)) {
+        scoped { CompositeDisposable() }
+        scoped { FavoriteListRepository(get(),get()) }
+        scoped {
+            FavoriteDataSource(
+                get(),
+                get(),
+                get()
+            )
+        }
+        viewModel { FavoriteListViewModel(get()) }
+    }
+
 }
