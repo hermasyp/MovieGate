@@ -14,9 +14,12 @@ Github : https://github.com/hermasyp
 
 class FavoriteDataSource(
     private val favoriteDao: FavoriteDao,
-    private val appScheduler: AppScheduler,
-    private val compositeDisposable: CompositeDisposable
+    private val appScheduler: AppScheduler
 ) {
+
+    var compositeDisposable: CompositeDisposable = CompositeDisposable()
+
+
     val saveResult: PublishSubject<ResultState<Boolean>> =
         PublishSubject.create<ResultState<Boolean>>()
     val deleteResult: PublishSubject<ResultState<Boolean>> =
@@ -67,5 +70,8 @@ class FavoriteDataSource(
             ).addTo(compositeDisposable)
     }
 
+    fun clear(){
+        compositeDisposable.dispose()
+    }
 
 }

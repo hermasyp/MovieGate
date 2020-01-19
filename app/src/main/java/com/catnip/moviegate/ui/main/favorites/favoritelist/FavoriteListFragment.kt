@@ -1,29 +1,19 @@
 package com.catnip.moviegate.ui.main.favorites.favoritelist
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.catnip.moviegate.R
-import com.catnip.moviegate.di.ScopeNames
-import com.catnip.moviegate.ui.main.movie.MoviesViewModel
-import org.koin.android.ext.android.getKoin
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.qualifier.named
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class FavoriteListFragment : Fragment() {
-
-    private val scopeId = "favoriteListFrag"
-    private val scopeName = getKoin().createScope(scopeId, named(ScopeNames.FavoriteListScope))
-    private val favoriteListViewModel: FavoriteListViewModel by scopeName.viewModel(this)
+    private val favoriteListViewModel: FavoriteListViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,8 +57,6 @@ class FavoriteListFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        scopeName.close()
-
     }
 
 }

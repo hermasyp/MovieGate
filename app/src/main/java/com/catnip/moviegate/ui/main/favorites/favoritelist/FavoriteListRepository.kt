@@ -5,7 +5,6 @@ import com.catnip.moviegate.data.local.dao.FavoriteDataSource
 import com.catnip.moviegate.data.local.entity.Favorite
 import com.catnip.moviegate.data.network.ResultState
 import com.catnip.moviegate.ext.toLiveData
-import io.reactivex.disposables.CompositeDisposable
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas
@@ -13,17 +12,16 @@ Github : https://github.com/hermasyp
  **/
 
 class FavoriteListRepository(
-    private val dataSource: FavoriteDataSource,
-    private val compositeDisposable: CompositeDisposable
+    private val dataSource: FavoriteDataSource
 ) {
     val saveResult: LiveData<ResultState<Boolean>> by lazy {
-        dataSource.saveResult.toLiveData(compositeDisposable)
+        dataSource.saveResult.toLiveData(dataSource.compositeDisposable)
     }
     val deleteResult: LiveData<ResultState<Boolean>> by lazy {
-        dataSource.deleteResult.toLiveData(compositeDisposable)
+        dataSource.deleteResult.toLiveData(dataSource.compositeDisposable)
     }
     val favoriteResult: LiveData<ResultState<MutableList<Favorite>>> by lazy {
-        dataSource.favoriteResult.toLiveData(compositeDisposable)
+        dataSource.favoriteResult.toLiveData(dataSource.compositeDisposable)
     }
 
     fun saveFavorite(favorite: Favorite) {
@@ -39,6 +37,6 @@ class FavoriteListRepository(
     }
 
     fun onCleared() {
-        compositeDisposable.clear()
+        dataSource.compositeDisposable.dispose()
     }
 }

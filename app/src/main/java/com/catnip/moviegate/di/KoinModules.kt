@@ -7,13 +7,12 @@ import com.catnip.moviegate.data.datasource.movies.MoviesDataSourceFactory
 import com.catnip.moviegate.data.datasource.tvshows.TvShowsDataSourceFactory
 import com.catnip.moviegate.data.local.dao.FavoriteDataSource
 import com.catnip.moviegate.data.local.database.AppDatabase
+import com.catnip.moviegate.data.network.AppScheduler
+import com.catnip.moviegate.data.network.RetrofitApi
 import com.catnip.moviegate.di.ScopeNames.DetailMovieScopes
 import com.catnip.moviegate.di.ScopeNames.DetailTvShowScopes
 import com.catnip.moviegate.di.ScopeNames.MoviesListScopes
 import com.catnip.moviegate.di.ScopeNames.TvShowsListScopes
-import com.catnip.moviegate.data.network.AppScheduler
-import com.catnip.moviegate.data.network.RetrofitApi
-import com.catnip.moviegate.di.ScopeNames.FavoriteListScope
 import com.catnip.moviegate.ui.detailmovie.DetailMovieRepository
 import com.catnip.moviegate.ui.detailmovie.DetailMovieViewModel
 import com.catnip.moviegate.ui.detailtvshow.DetailTvShowRepository
@@ -108,17 +107,13 @@ val scopesModule = module {
         viewModel { DetailTvShowViewModel(get()) }
     }
 
-    scope(named(FavoriteListScope)) {
-        scoped { CompositeDisposable() }
-        scoped { FavoriteListRepository(get(),get()) }
-        scoped {
-            FavoriteDataSource(
-                get(),
-                get(),
-                get()
-            )
-        }
-        viewModel { FavoriteListViewModel(get()) }
+    single { FavoriteListRepository(get()) }
+    single {
+        FavoriteDataSource(
+            get(),
+            get()
+        )
     }
+    viewModel { FavoriteListViewModel(get()) }
 
 }
