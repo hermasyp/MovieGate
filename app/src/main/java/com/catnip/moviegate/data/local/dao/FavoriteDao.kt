@@ -5,6 +5,7 @@ import com.catnip.moviegate.data.local.entity.ContentType
 import com.catnip.moviegate.data.local.entity.Favorite
 import io.reactivex.Completable
 import io.reactivex.Single
+import io.reactivex.internal.operators.completable.CompletableAmb
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas
@@ -24,5 +25,8 @@ interface FavoriteDao {
 
     @Query("SELECT * FROM favorites where type = :contentType")
     fun getAll(contentType: String): Single<MutableList<Favorite>>
+
+    @Query("SELECT * FROM favorites where id = :id")
+    fun isContentFavorited(id: String?): Single<MutableList<Favorite>>
 
 }

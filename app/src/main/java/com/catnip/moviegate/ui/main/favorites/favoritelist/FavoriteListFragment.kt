@@ -1,20 +1,31 @@
 package com.catnip.moviegate.ui.main.favorites.favoritelist
 
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.catnip.moviegate.R
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import com.catnip.moviegate.data.local.entity.ContentType
+import com.catnip.moviegate.data.local.entity.Favorite
+import com.catnip.moviegate.data.network.ResultState
+import com.catnip.moviegate.ui.detailmovie.DetailMovieActivity
+import com.catnip.moviegate.ui.detailtvshow.DetailTvShowActivity
+import kotlinx.android.synthetic.main.fragment_tab_favorite.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class FavoriteListFragment : Fragment() {
-    private val favoriteListViewModel: FavoriteListViewModel by sharedViewModel()
-
+    private val favoriteListViewModel: FavoriteListViewModel by viewModel()
+    private val TAG = FavoriteListFragment::class.java.simpleName
+    private lateinit var favoriteListAdapter: FavoriteListAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,8 +40,49 @@ class FavoriteListFragment : Fragment() {
         type?.let {
             favoriteListViewModel.getFavorite(it)
         }
-        favoriteListViewModel.favoriteResult.observe(this, Observer {
-        })
+        rv_favorites.layoutManager = LinearLayoutManager(context)
+        rv_favorites.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        favoriteListAdapter = FavoriteListAdapter(
+            {
+                if (it?.type == ContentType.MOVIE.toString()) {
+                    DetailMovieActivity.run(context, it.id)
+                } else {
+                    DetailTvShowActivity.run(context, it?.id)
+                }
+            },
+            {
+                it?.let { fav -> favoriteListViewModel.deleteFavorite(fav) }
+            })
+
+        favoriteListViewModel.deleteResult.observe(this) {
+            when (it) {
+                is ResultState.Progress -> {
+                    d(TAG, "On progress")
+                }
+                is ResultState.Success -> {
+                    type?.let { it1 -> favoriteListViewModel.getFavorite(it1) }
+                }
+                is ResultState.Failure -> {
+                    d(TAG, "Error")
+                }
+            }
+        }
+
+        favoriteListViewModel.favoriteResult.observe(this) {
+            when (it) {
+                is ResultState.Progress -> {
+                    d(TAG, "On progress")
+                }
+                is ResultState.Success -> {
+                    d(TAG, type + " " + it.data.size.toString())
+                    favoriteListAdapter.items = it.data
+                    rv_favorites.adapter = favoriteListAdapter
+                }
+                is ResultState.Failure -> {
+                    d(TAG, "Error")
+                }
+            }
+        }
     }
 
     companion object {
@@ -53,10 +105,6 @@ class FavoriteListFragment : Fragment() {
                     }
                 }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
 }

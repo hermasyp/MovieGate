@@ -35,7 +35,7 @@ class TvShowsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvShowAdapter = TvShowAdapter{
-            DetailTvShowActivity.run(context,it)
+            DetailTvShowActivity.run(context,it?.id)
         }
         val gridLayoutManager = GridLayoutManager(context, 3)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {

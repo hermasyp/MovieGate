@@ -19,10 +19,11 @@ class FavoriteDataSource(
 
     var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-
     val saveResult: PublishSubject<ResultState<Boolean>> =
         PublishSubject.create<ResultState<Boolean>>()
     val deleteResult: PublishSubject<ResultState<Boolean>> =
+        PublishSubject.create<ResultState<Boolean>>()
+    val isFavoriteResult: PublishSubject<ResultState<Boolean>> =
         PublishSubject.create<ResultState<Boolean>>()
     val favoriteResult: PublishSubject<ResultState<MutableList<Favorite>>> =
         PublishSubject.create<ResultState<MutableList<Favorite>>>()
@@ -70,7 +71,25 @@ class FavoriteDataSource(
             ).addTo(compositeDisposable)
     }
 
-    fun clear(){
+    fun getFavoriteStatus(id: String) {
+        isFavoriteResult.loading(true)
+        favoriteDao.isContentFavorited(id)
+            .performOnBackOutOnMain(appScheduler)
+            .subscribe(
+                {
+                    if (it.size >= 1) {
+                        isFavoriteResult.success(true)
+                    } else {
+                        isFavoriteResult.success(false)
+                    }
+                },
+                {
+                    isFavoriteResult.failed(it)
+                }
+            ).addTo(compositeDisposable)
+    }
+
+    fun clear() {
         compositeDisposable.dispose()
     }
 

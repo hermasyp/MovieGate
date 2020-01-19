@@ -1,6 +1,8 @@
 package com.catnip.moviegate.model.detailtvshow
 
 
+import com.catnip.moviegate.data.local.entity.ContentType
+import com.catnip.moviegate.data.local.entity.Favorite
 import com.catnip.moviegate.model.common.Genre
 import com.google.gson.annotations.SerializedName
 
@@ -18,7 +20,7 @@ data class DetailTvShows(
     @SerializedName("homepage")
     var homepage: String,
     @SerializedName("id")
-    var id: Int,
+    var id: String,
     @SerializedName("in_production")
     var inProduction: Boolean,
     @SerializedName("languages")
@@ -61,4 +63,8 @@ data class DetailTvShows(
     var voteAverage: Double,
     @SerializedName("vote_count")
     var voteCount: Int
-)
+){
+    fun detailToFavorite() : Favorite {
+        return Favorite(id = id,type = ContentType.TVSHOWS.toString(),title = name,originalTitle = originalName,releaseDate = firstAirDate,posterPath = posterPath)
+    }
+}

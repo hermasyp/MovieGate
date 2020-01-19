@@ -92,7 +92,7 @@ val scopesModule = module {
                 get()
             )
         }
-        viewModel { DetailMovieViewModel(get()) }
+        viewModel { DetailMovieViewModel(get(),get()) }
     }
     scope(named(DetailTvShowScopes)) {
         scoped { CompositeDisposable() }
@@ -104,11 +104,11 @@ val scopesModule = module {
                 get()
             )
         }
-        viewModel { DetailTvShowViewModel(get()) }
+        viewModel { DetailTvShowViewModel(get(),get()) }
     }
 
-    single { FavoriteListRepository(get()) }
-    single {
+    factory { FavoriteListRepository(get()) }
+    factory {
         FavoriteDataSource(
             get(),
             get()

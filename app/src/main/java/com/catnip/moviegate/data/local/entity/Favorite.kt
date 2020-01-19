@@ -1,6 +1,7 @@
 package com.catnip.moviegate.data.local.entity
 
 import androidx.room.*
+import com.catnip.moviegate.model.content.Content
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas

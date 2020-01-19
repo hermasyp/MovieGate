@@ -23,6 +23,9 @@ class FavoriteListRepository(
     val favoriteResult: LiveData<ResultState<MutableList<Favorite>>> by lazy {
         dataSource.favoriteResult.toLiveData(dataSource.compositeDisposable)
     }
+    val isFavoritedResult: LiveData<ResultState<Boolean>> by lazy {
+        dataSource.isFavoriteResult.toLiveData(dataSource.compositeDisposable)
+    }
 
     fun saveFavorite(favorite: Favorite) {
         dataSource.saveFavorite(favorite)
@@ -35,8 +38,11 @@ class FavoriteListRepository(
     fun getFavorite(contentType: String) {
         dataSource.getFavorites(contentType)
     }
+    fun isFavorited(id: String) {
+        dataSource.getFavoriteStatus(id)
+    }
 
     fun onCleared() {
-        dataSource.compositeDisposable.dispose()
+        dataSource.clear()
     }
 }

@@ -15,9 +15,9 @@ import kotlinx.android.synthetic.main.list_item_favorite.view.*
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-class FavoriteListAdapter(val itemClick: (Favorite) -> Unit, val favClick: (Favorite) -> Unit) :
+class FavoriteListAdapter(private val itemClick: (Favorite?) -> Unit, private val favClick: (Favorite?) -> Unit) :
     RecyclerView.Adapter<FavoriteListAdapter.FavoriteViewHolder>() {
-    private var items: MutableList<Favorite> = mutableListOf()
+    var items: MutableList<Favorite> = mutableListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -27,8 +27,8 @@ class FavoriteListAdapter(val itemClick: (Favorite) -> Unit, val favClick: (Favo
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.list_item_favorite, parent, false)
         return FavoriteViewHolder(view).apply {
-            itemView.setOnClickListener { itemClick }
-            itemView.img_favorite.setOnClickListener { favClick }
+            itemView.setOnClickListener { itemClick(items[adapterPosition]) }
+            itemView.img_favorite.setOnClickListener { favClick(items[adapterPosition]) }
         }
     }
 
@@ -44,7 +44,7 @@ class FavoriteListAdapter(val itemClick: (Favorite) -> Unit, val favClick: (Favo
 
         fun bindView(item: Favorite) {
             with(item) {
-                itemView.txt_title_content.text = this.originalTitle
+                itemView.txt_title_content.text = this.title
                 itemView.txt_year_content.textParseFromDate(this.releaseDate)
                 itemView.img_poster.load(BuildConfig.BASE_POSTER_IMG_URL + this.posterPath)
             }
