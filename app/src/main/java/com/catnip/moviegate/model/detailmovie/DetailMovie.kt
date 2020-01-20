@@ -1,6 +1,8 @@
 package com.catnip.moviegate.model.detailmovie
 
 
+import com.catnip.moviegate.data.local.entity.ContentType
+import com.catnip.moviegate.data.local.entity.Favorite
 import com.catnip.moviegate.model.common.Genre
 import com.google.gson.annotations.SerializedName
 
@@ -18,7 +20,7 @@ data class DetailMovie(
     @SerializedName("homepage")
     var homepage: String,
     @SerializedName("id")
-    var id: Int,
+    var id: String,
     @SerializedName("imdb_id")
     var imdbId: String,
     @SerializedName("original_language")
@@ -55,4 +57,8 @@ data class DetailMovie(
     var voteAverage: Double,
     @SerializedName("vote_count")
     var voteCount: Int
-)
+){
+    fun detailToFavorite() : Favorite{
+        return Favorite(id = id,type = ContentType.MOVIE.toString(),title = title,originalTitle = originalTitle,releaseDate = releaseDate,posterPath = posterPath)
+    }
+}

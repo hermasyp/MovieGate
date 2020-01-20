@@ -99,4 +99,12 @@
     <string name="content_desc_img_poster">Poster of content</string>
     <string name="text_overview">Overview</string>
     <string name="txt_change_language">Change Language</string>
+    <string name="txt_favorited_movies">Favorited Movies</string>
+    <string name="txt_top_movies">Top Movies</string>
+    <string name="title_activity_favorite">FavoriteActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="favorites">Favorites</string>
+    <string name="txt_delete_success">Delete Favorite Success</string>
+    <string name="txt_save_success">Set Favorite Success</string>
 </resources>

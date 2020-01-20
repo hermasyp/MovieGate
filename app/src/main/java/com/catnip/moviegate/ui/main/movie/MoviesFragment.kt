@@ -36,7 +36,7 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         moviesAdapter = MoviesAdapter {
-            DetailMovieActivity.run(context,it)
+            DetailMovieActivity.run(context,it?.id)
         }
         val gridLayoutManager = GridLayoutManager(context, 3)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {

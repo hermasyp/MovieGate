@@ -11,11 +11,11 @@ android {
     buildToolsVersion releases.buildToolsVersion
     defaultConfig {
         applicationId releases.appId
-        minSdkVersion releases.minSdkVersion
-        targetSdkVersion releases.targetSdkVersion
         versionCode releases.versionCode
         versionName releases.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdkVersion releases.minSdkVersion
+        targetSdkVersion releases.targetSdkVersion
     }
     buildTypes {
         release {
@@ -79,6 +79,9 @@ dependencies {
 
     implementation deps.coil.coil
 
+    implementation deps.room.room
+    implementation deps.room.roomRx
+    kapt deps.room.roomKapt
 
     testImplementation deps.testing.jUnit
     androidTestImplementation deps.testing.testRunner

@@ -1,12 +1,12 @@
-package com.catnip.moviegate.datasource.movies
+package com.catnip.moviegate.data.datasource.movies
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.catnip.moviegate.base.Constants.Companion.FIRST_PAGE
 import com.catnip.moviegate.ext.addTo
 import com.catnip.moviegate.ext.performOnBackOutOnMain
-import com.catnip.moviegate.model.movies.Movie
-import com.catnip.moviegate.network.*
+import com.catnip.moviegate.model.content.Content
+import com.catnip.moviegate.data.network.*
 import io.reactivex.disposables.CompositeDisposable
 
 /**
@@ -17,13 +17,13 @@ class MoviesDataSource(
     private val api: RetrofitApi,
     private val scheduler: Scheduler,
     private val compositeDisposable: CompositeDisposable
-) : PageKeyedDataSource<Int, Movie>() {
+) : PageKeyedDataSource<Int, Content>() {
 
     val state : MutableLiveData<PaginateResultState> = MutableLiveData()
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, Movie>
+        callback: LoadInitialCallback<Int, Content>
     ) {
         state.postValue(PaginateResultState.LOADING)
         api.getMovies(FIRST_PAGE)
@@ -31,7 +31,7 @@ class MoviesDataSource(
             .subscribe(
                 {
                     state.postValue(PaginateResultState.LOADED)
-                    callback.onResult(it.movies, null, FIRST_PAGE + 1)
+                    callback.onResult(it.datas, null, FIRST_PAGE + 1)
                 },
                 {
                     state.postValue(PaginateResultState.ERROR)
@@ -40,14 +40,14 @@ class MoviesDataSource(
 
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Content>) {
         state.postValue(PaginateResultState.LOADING)
         api.getMovies(params.key)
             .performOnBackOutOnMain(scheduler)
             .subscribe(
                 {
                     if(it.totalPages >= params.key) {
-                        callback.onResult(it.movies, params.key+1)
+                        callback.onResult(it.datas, params.key+1)
                         state.postValue(PaginateResultState.LOADED)
                     }
                     else{
@@ -60,7 +60,7 @@ class MoviesDataSource(
             ).addTo(compositeDisposable)
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Content>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

@@ -5,4 +5,9 @@
     <string name="title_tab_tvshows">Serial Tv</string>
     <string name="text_overview">Ringkasan</string>
     <string name="txt_change_language">Ganti Bahasa</string>
+    <string name="txt_favorited_movies">Film Favorite</string>
+    <string name="txt_top_movies">Film Teratas</string>
+    <string name="favorites">Favorit</string>
+    <string name="txt_delete_success">Menghapus Favorit Sukses</string>
+    <string name="txt_save_success">Menyimpan Favorit Sukses</string>
 </resources>

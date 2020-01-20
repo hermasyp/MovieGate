@@ -1,13 +1,16 @@
-package com.catnip.moviegate.model.tvshows
-
+package com.catnip.moviegate.model.common
 
 import com.google.gson.annotations.SerializedName
 
-data class TvShows(
+/**
+Written with love by Muhammad Hermas Yuda Pamungkas
+Github : https://github.com/hermasyp
+ **/
+data class Results<T>(
     @SerializedName("page")
     var page: Int,
     @SerializedName("results")
-    var results: List<TvShow>,
+    var datas: List<T>,
     @SerializedName("total_pages")
     var totalPages: Int,
     @SerializedName("total_results")

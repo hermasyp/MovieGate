@@ -1,14 +1,13 @@
-package com.catnip.moviegate.network
+package com.catnip.moviegate.data.network
 
 import com.catnip.moviegate.BuildConfig
+import com.catnip.moviegate.model.common.Results
+import com.catnip.moviegate.model.content.Content
 import com.catnip.moviegate.model.detailmovie.DetailMovie
 import com.catnip.moviegate.model.detailtvshow.DetailTvShows
-import com.catnip.moviegate.model.movies.Movies
-import com.catnip.moviegate.model.tvshows.TvShows
 import io.reactivex.Single
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -26,10 +25,10 @@ interface RetrofitApi {
     //TODO : api interface will written in here.
 
     @GET("/3/discover/movie")
-    fun getMovies(@Query("page") page: Int):Single<Movies>
+    fun getMovies(@Query("page") page: Int):Single<Results<Content>>
 
     @GET("/3/discover/tv")
-    fun getTvShows(@Query("page") page: Int):Single<TvShows>
+    fun getTvShows(@Query("page") page: Int):Single<Results<Content>>
 
     @GET("/3/movie/{id_movie}")
     fun getDetailMovie(@Path("id_movie") idMovie: String):Single<DetailMovie>
@@ -40,7 +39,7 @@ interface RetrofitApi {
     companion object{
         operator fun invoke() : RetrofitApi{
             val authInterceptor = Interceptor {chain->
-                val newUrl = chain.request().url()
+                val newUrl = chain.request().url
                     .newBuilder()
                     .addQueryParameter("api_key",BuildConfig.API_KEY)
                     .addQueryParameter("language","en-US")
@@ -54,7 +53,7 @@ interface RetrofitApi {
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(authInterceptor)
-                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                //.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)

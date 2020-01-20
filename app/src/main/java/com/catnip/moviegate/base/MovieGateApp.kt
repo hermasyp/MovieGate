@@ -14,7 +14,7 @@ class MovieGateApp : Application(){
         super.onCreate()
         startKoin {
             androidContext(this@MovieGateApp)
-            modules(listOf(networkModule,scopesModule))
+            modules(listOf(databaseModule,networkModule,scopesModule))
         }
     }
 }

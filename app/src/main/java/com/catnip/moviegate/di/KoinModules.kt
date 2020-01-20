@@ -1,19 +1,24 @@
 package com.catnip.moviegate.di
 
-import com.catnip.moviegate.datasource.detailmovies.DetailMovieDataSource
-import com.catnip.moviegate.datasource.detailmovies.DetailTVShowDataSource
-import com.catnip.moviegate.datasource.movies.MoviesDataSourceFactory
-import com.catnip.moviegate.datasource.tvshows.TvShowsDataSourceFactory
+import androidx.room.Room
+import com.catnip.moviegate.data.datasource.detailmovies.DetailMovieDataSource
+import com.catnip.moviegate.data.datasource.detailmovies.DetailTVShowDataSource
+import com.catnip.moviegate.data.datasource.movies.MoviesDataSourceFactory
+import com.catnip.moviegate.data.datasource.tvshows.TvShowsDataSourceFactory
+import com.catnip.moviegate.data.local.dao.FavoriteDataSource
+import com.catnip.moviegate.data.local.database.AppDatabase
+import com.catnip.moviegate.data.network.AppScheduler
+import com.catnip.moviegate.data.network.RetrofitApi
 import com.catnip.moviegate.di.ScopeNames.DetailMovieScopes
 import com.catnip.moviegate.di.ScopeNames.DetailTvShowScopes
 import com.catnip.moviegate.di.ScopeNames.MoviesListScopes
 import com.catnip.moviegate.di.ScopeNames.TvShowsListScopes
-import com.catnip.moviegate.network.AppScheduler
-import com.catnip.moviegate.network.RetrofitApi
 import com.catnip.moviegate.ui.detailmovie.DetailMovieRepository
 import com.catnip.moviegate.ui.detailmovie.DetailMovieViewModel
 import com.catnip.moviegate.ui.detailtvshow.DetailTvShowRepository
 import com.catnip.moviegate.ui.detailtvshow.DetailTvShowViewModel
+import com.catnip.moviegate.ui.main.favorites.favoritelist.FavoriteListRepository
+import com.catnip.moviegate.ui.main.favorites.favoritelist.FavoriteListViewModel
 import com.catnip.moviegate.ui.main.movie.MoviesRepository
 import com.catnip.moviegate.ui.main.movie.MoviesViewModel
 import com.catnip.moviegate.ui.main.tvshow.TvShowsRepository
@@ -29,10 +34,21 @@ Github : https://github.com/hermasyp
  **/
 
 object ScopeNames {
+    const val FavoriteListScope = "FavoriteListFragment"
     const val MoviesListScopes = "MoviesFragment"
     const val TvShowsListScopes = "TvShowsFragment"
     const val DetailMovieScopes = "DetailMovieActivity"
     const val DetailTvShowScopes = "DetailTvShowActivity"
+}
+
+val databaseModule = module {
+    single {
+        Room.databaseBuilder(get(), AppDatabase::class.java, AppDatabase.DBNAME)
+            .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
+            .build()
+    }
+    single { get<AppDatabase>().favoriteDao() }
 }
 
 val networkModule = module {
@@ -76,7 +92,7 @@ val scopesModule = module {
                 get()
             )
         }
-        viewModel { DetailMovieViewModel(get()) }
+        viewModel { DetailMovieViewModel(get(),get()) }
     }
     scope(named(DetailTvShowScopes)) {
         scoped { CompositeDisposable() }
@@ -88,6 +104,16 @@ val scopesModule = module {
                 get()
             )
         }
-        viewModel { DetailTvShowViewModel(get()) }
+        viewModel { DetailTvShowViewModel(get(),get()) }
     }
+
+    factory { FavoriteListRepository(get()) }
+    factory {
+        FavoriteDataSource(
+            get(),
+            get()
+        )
+    }
+    viewModel { FavoriteListViewModel(get()) }
+
 }

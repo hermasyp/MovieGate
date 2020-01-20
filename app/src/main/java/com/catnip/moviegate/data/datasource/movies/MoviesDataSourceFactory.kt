@@ -1,11 +1,10 @@
-package com.catnip.moviegate.datasource.movies
+package com.catnip.moviegate.data.datasource.movies
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
-import com.catnip.moviegate.datasource.movies.MoviesDataSource
-import com.catnip.moviegate.model.movies.Movie
-import com.catnip.moviegate.network.AppScheduler
-import com.catnip.moviegate.network.RetrofitApi
+import com.catnip.moviegate.model.content.Content
+import com.catnip.moviegate.data.network.AppScheduler
+import com.catnip.moviegate.data.network.RetrofitApi
 import io.reactivex.disposables.CompositeDisposable
 
 
@@ -17,10 +16,10 @@ class MoviesDataSourceFactory(
     private val api: RetrofitApi,
     private val scheduler: AppScheduler,
     private val compositeDisposable: CompositeDisposable
-) : DataSource.Factory<Int, Movie>() {
+) : DataSource.Factory<Int, Content>() {
 
     val moviesLiveDataSource = MutableLiveData<MoviesDataSource>()
-    override fun create(): DataSource<Int, Movie> {
+    override fun create(): DataSource<Int, Content> {
         val mds = MoviesDataSource(
             api,
             scheduler,

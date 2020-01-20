@@ -2,7 +2,7 @@ package com.catnip.moviegate.ext
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.catnip.moviegate.network.ResultState
+import com.catnip.moviegate.data.network.ResultState
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 
