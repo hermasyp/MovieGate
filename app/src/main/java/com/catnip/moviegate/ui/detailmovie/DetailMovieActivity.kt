@@ -11,10 +11,9 @@ import androidx.lifecycle.observe
 import coil.api.load
 import com.catnip.moviegate.BuildConfig
 import com.catnip.moviegate.R
-import com.catnip.moviegate.di.ScopeNames
-import com.catnip.moviegate.model.content.Content
-import com.catnip.moviegate.model.detailmovie.DetailMovie
 import com.catnip.moviegate.data.network.ResultState
+import com.catnip.moviegate.di.ScopeNames
+import com.catnip.moviegate.model.detailmovie.DetailMovie
 import com.catnip.moviegate.utils.genre.GenreGenerator
 import kotlinx.android.synthetic.main.activity_detail_movie.*
 import kotlinx.android.synthetic.main.content_detail_movie.*
@@ -106,7 +105,7 @@ class DetailMovieActivity : AppCompatActivity() {
                 }
                 is ResultState.Success -> {
                     if (it.data) {
-                        Toast.makeText(this, "Delete Favorite Success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.txt_delete_success), Toast.LENGTH_SHORT).show()
                     }
                 }
                 is ResultState.Failure -> {
@@ -122,7 +121,7 @@ class DetailMovieActivity : AppCompatActivity() {
                 }
                 is ResultState.Success -> {
                     if (it.data) {
-                        Toast.makeText(this, "Set Favorite Success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.txt_save_success), Toast.LENGTH_SHORT).show()
                     }
                 }
                 is ResultState.Failure -> {

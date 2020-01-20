@@ -8,4 +8,6 @@
     <string name="txt_favorited_movies">Favorited Movies</string>
     <string name="txt_top_movies">Top Movies</string>
     <string name="favorites">Favorites</string>
+    <string name="txt_delete_success">Delete Favorite Success</string>
+    <string name="txt_save_success">Set Favorite Success</string>
 </resources>

@@ -11,21 +11,12 @@ import androidx.lifecycle.observe
 import coil.api.load
 import com.catnip.moviegate.BuildConfig
 import com.catnip.moviegate.R
-import com.catnip.moviegate.di.ScopeNames
-import com.catnip.moviegate.model.content.Content
-import com.catnip.moviegate.model.detailtvshow.DetailTvShows
 import com.catnip.moviegate.data.network.ResultState
+import com.catnip.moviegate.di.ScopeNames
+import com.catnip.moviegate.model.detailtvshow.DetailTvShows
 import com.catnip.moviegate.utils.genre.GenreGenerator
 import kotlinx.android.synthetic.main.activity_detail_tv_show.*
-import kotlinx.android.synthetic.main.content_detail_movie.*
 import kotlinx.android.synthetic.main.content_detail_tv_show.*
-import kotlinx.android.synthetic.main.content_detail_tv_show.img_favorite
-import kotlinx.android.synthetic.main.content_detail_tv_show.img_poster_detail
-import kotlinx.android.synthetic.main.content_detail_tv_show.rating_view
-import kotlinx.android.synthetic.main.content_detail_tv_show.txt_detail_content
-import kotlinx.android.synthetic.main.content_detail_tv_show.txt_genre_content
-import kotlinx.android.synthetic.main.content_detail_tv_show.txt_rating_total
-import kotlinx.android.synthetic.main.content_detail_tv_show.txt_title_detail
 import org.koin.android.ext.android.getKoin
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
@@ -113,7 +104,7 @@ class DetailTvShowActivity : AppCompatActivity() {
                 }
                 is ResultState.Success -> {
                     if (it.data) {
-                        Toast.makeText(this, "Delete Favorite Success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.txt_delete_success), Toast.LENGTH_SHORT).show()
                     }
                 }
                 is ResultState.Failure -> {
@@ -129,7 +120,7 @@ class DetailTvShowActivity : AppCompatActivity() {
                 }
                 is ResultState.Success -> {
                     if (it.data) {
-                        Toast.makeText(this, "Set Favorite Success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.txt_save_success), Toast.LENGTH_SHORT).show()
                     }
                 }
                 is ResultState.Failure -> {

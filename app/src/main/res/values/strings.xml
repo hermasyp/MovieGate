@@ -105,4 +105,6 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="favorites">Favorites</string>
+    <string name="txt_delete_success">Delete Favorite Success</string>
+    <string name="txt_save_success">Set Favorite Success</string>
 </resources>
