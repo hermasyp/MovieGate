@@ -25,24 +25,30 @@ interface RetrofitApi {
     //TODO : api interface will written in here.
 
     @GET("/3/discover/movie")
-    fun getMovies(@Query("page") page: Int):Single<Results<Content>>
+    fun getMovies(@Query("page") page: Int): Single<Results<Content>>
 
     @GET("/3/discover/tv")
-    fun getTvShows(@Query("page") page: Int):Single<Results<Content>>
+    fun getTvShows(@Query("page") page: Int): Single<Results<Content>>
 
     @GET("/3/movie/{id_movie}")
-    fun getDetailMovie(@Path("id_movie") idMovie: String):Single<DetailMovie>
+    fun getDetailMovie(@Path("id_movie") idMovie: String): Single<DetailMovie>
 
     @GET("/3/tv/{id_tvshow}")
-    fun getDetailTvShow(@Path("id_tvshow") idTvShow: String):Single<DetailTvShows>
+    fun getDetailTvShow(@Path("id_tvshow") idTvShow: String): Single<DetailTvShows>
 
-    companion object{
-        operator fun invoke() : RetrofitApi{
-            val authInterceptor = Interceptor {chain->
+    @GET("/3/search/tv/{query}")
+    fun getSearchTv(@Path("query") query: String): Single<Results<Content>>
+
+    @GET("/3/search/movie/{query}")
+    fun getSearchMovie(@Path("query") query: String): Single<Results<Content>>
+
+    companion object {
+        operator fun invoke(): RetrofitApi {
+            val authInterceptor = Interceptor { chain ->
                 val newUrl = chain.request().url
                     .newBuilder()
-                    .addQueryParameter("api_key",BuildConfig.API_KEY)
-                    .addQueryParameter("language","en-US")
+                    .addQueryParameter("api_key", BuildConfig.API_KEY)
+                    .addQueryParameter("language", "en-US")
                     .build()
                 val newRequest = chain.request()
                     .newBuilder()
