@@ -1,8 +1,8 @@
 package com.catnip.moviegate.data.datasource.search
 
+import com.catnip.moviegate.data.network.AppScheduler
 import com.catnip.moviegate.data.network.ResultState
 import com.catnip.moviegate.data.network.RetrofitApi
-import com.catnip.moviegate.data.network.Scheduler
 import com.catnip.moviegate.ext.*
 import com.catnip.moviegate.model.common.Results
 import com.catnip.moviegate.model.content.Content
@@ -18,25 +18,26 @@ Github : https://github.com/hermasyp
 
 class SearchDataSource(
     private val api: RetrofitApi,
-    private val scheduler: Scheduler,
+    private val scheduler: AppScheduler,
     private val compositeDisposable: CompositeDisposable
 ) {
-    val contentResults: PublishSubject<ResultState<SearchResult>> =
+    val searchResult: PublishSubject<ResultState<SearchResult>> =
         PublishSubject.create<ResultState<SearchResult>>()
 
     fun fetchSearchResult(query: String) {
-        contentResults.loading(true)
+        searchResult.loading(true)
         api.getSearchMovie(query)
             .zipWith<Results<Content>, SearchResult>(api.getSearchTv(query),
                 BiFunction { resultMovie, resultTvShow -> SearchResult(resultMovie, resultTvShow) })
             .performOnBackOutOnMain(scheduler)
             .subscribe(
                 {
-                    contentResults.success(it)
+                    searchResult.success(it)
                 },
                 {
-                    contentResults.failed(it)
+                    searchResult.failed(it)
                 }
             ).addTo(compositeDisposable)
     }
+
 }

@@ -4,6 +4,7 @@ import androidx.room.Room
 import com.catnip.moviegate.data.datasource.detailmovies.DetailMovieDataSource
 import com.catnip.moviegate.data.datasource.detailmovies.DetailTVShowDataSource
 import com.catnip.moviegate.data.datasource.movies.MoviesDataSourceFactory
+import com.catnip.moviegate.data.datasource.search.SearchDataSource
 import com.catnip.moviegate.data.datasource.tvshows.TvShowsDataSourceFactory
 import com.catnip.moviegate.data.local.dao.FavoriteDataSource
 import com.catnip.moviegate.data.local.database.AppDatabase
@@ -12,6 +13,7 @@ import com.catnip.moviegate.data.network.RetrofitApi
 import com.catnip.moviegate.di.ScopeNames.DetailMovieScopes
 import com.catnip.moviegate.di.ScopeNames.DetailTvShowScopes
 import com.catnip.moviegate.di.ScopeNames.MoviesListScopes
+import com.catnip.moviegate.di.ScopeNames.SearchActivityScope
 import com.catnip.moviegate.di.ScopeNames.TvShowsListScopes
 import com.catnip.moviegate.ui.detailmovie.DetailMovieRepository
 import com.catnip.moviegate.ui.detailmovie.DetailMovieViewModel
@@ -23,6 +25,8 @@ import com.catnip.moviegate.ui.main.movie.MoviesRepository
 import com.catnip.moviegate.ui.main.movie.MoviesViewModel
 import com.catnip.moviegate.ui.main.tvshow.TvShowsRepository
 import com.catnip.moviegate.ui.main.tvshow.TvShowsViewModel
+import com.catnip.moviegate.ui.search.SearchRepository
+import com.catnip.moviegate.ui.search.SearchViewModel
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -34,7 +38,7 @@ Github : https://github.com/hermasyp
  **/
 
 object ScopeNames {
-    const val FavoriteListScope = "FavoriteListFragment"
+    const val SearchActivityScope = "SearchActivityScope"
     const val MoviesListScopes = "MoviesFragment"
     const val TvShowsListScopes = "TvShowsFragment"
     const val DetailMovieScopes = "DetailMovieActivity"
@@ -105,6 +109,19 @@ val scopesModule = module {
             )
         }
         viewModel { DetailTvShowViewModel(get(),get()) }
+    }
+
+    scope(named(SearchActivityScope)) {
+        scoped { CompositeDisposable() }
+        scoped { SearchRepository(get(), get()) }
+        scoped {
+            SearchDataSource(
+                get(),
+                get(),
+                get()
+            )
+        }
+        viewModel { SearchViewModel(get()) }
     }
 
     factory { FavoriteListRepository(get()) }

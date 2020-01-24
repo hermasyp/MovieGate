@@ -1,15 +1,23 @@
 package com.catnip.moviegate.ext
 
 import android.widget.TextView
+import com.catnip.moviegate.R
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import java.util.*
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-fun TextView.textParseFromDate(dateString : String?){
-    var parsedDate = SimpleDateFormat("yyyy-MM-dd").parse(dateString)
-    text = SimpleDateFormat("dd MMM yyyy").format(parsedDate).toString()
+fun TextView.textParseFromDate(dateString: String?) {
+    dateString?.let {
+        if (dateString != "") {
+            var parsedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(it)
+            parsedDate?.let { date ->
+                text = SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(date).toString()
+            }
+        } else {
+            text = context.getString(R.string.txt_unknown)
+        }
+    }
 }

@@ -10,4 +10,7 @@
     <string name="favorites">Favorit</string>
     <string name="txt_delete_success">Menghapus Favorit Sukses</string>
     <string name="txt_save_success">Menyimpan Favorit Sukses</string>
+    <string name="txt_search">Pencarian</string>
+    <string name="txt_search_not_found">Data Pencarian Tidak Ada</string>
+    <string name="txt_unknown">Unknown</string>
 </resources>

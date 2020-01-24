@@ -107,4 +107,7 @@
     <string name="favorites">Favorites</string>
     <string name="txt_delete_success">Delete Favorite Success</string>
     <string name="txt_save_success">Set Favorite Success</string>
+    <string name="txt_search">Search</string>
+    <string name="txt_search_not_found">Data Pencarian Tidak Ada</string>
+    <string name="txt_unknown">Unknown</string>
 </resources>

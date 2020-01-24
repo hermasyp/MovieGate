@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -13,6 +12,8 @@ import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.catnip.moviegate.R
 import com.catnip.moviegate.ext.setupWithNavController
+import com.catnip.moviegate.ui.search.SearchActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,6 +63,10 @@ class MainActivity : AppCompatActivity() {
         when(item.itemId){
             R.id.menu_setting -> {
                 val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                startActivity(mIntent)
+            }
+            R.id.action_search -> {
+                val mIntent = Intent(this,SearchActivity::class.java)
                 startActivity(mIntent)
             }
         }

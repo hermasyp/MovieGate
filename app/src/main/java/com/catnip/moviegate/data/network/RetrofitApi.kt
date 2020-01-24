@@ -36,11 +36,11 @@ interface RetrofitApi {
     @GET("/3/tv/{id_tvshow}")
     fun getDetailTvShow(@Path("id_tvshow") idTvShow: String): Single<DetailTvShows>
 
-    @GET("/3/search/tv/{query}")
-    fun getSearchTv(@Path("query") query: String): Single<Results<Content>>
+    @GET("/3/search/tv/")
+    fun getSearchTv(@Query("query") query: String): Single<Results<Content>>
 
-    @GET("/3/search/movie/{query}")
-    fun getSearchMovie(@Path("query") query: String): Single<Results<Content>>
+    @GET("/3/search/movie/")
+    fun getSearchMovie(@Query("query") query: String): Single<Results<Content>>
 
     companion object {
         operator fun invoke(): RetrofitApi {

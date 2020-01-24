@@ -10,7 +10,7 @@ data class Results<T>(
     @SerializedName("page")
     var page: Int,
     @SerializedName("results")
-    var datas: List<T>,
+    var datas: MutableList<T>,
     @SerializedName("total_pages")
     var totalPages: Int,
     @SerializedName("total_results")
