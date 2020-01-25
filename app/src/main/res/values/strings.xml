@@ -110,4 +110,27 @@
     <string name="txt_search">Search</string>
     <string name="txt_search_not_found">Data Pencarian Tidak Ada</string>
     <string name="txt_unknown">Unknown</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="txt_notify_alarm">Notify Alarm</string>
+    <string name="txt_key_reminder_daily">reminder_daily</string>
+    <string name="txt_title_reminder_daily">Remind me Everyday</string>
+    <string name="txt_summary_reminder_daily">Notify me when i\'m not opening app in 7am</string>
+    <string name="txt_title_reminder_new_movie">New Movie Reminder</string>
+    <string name="txt_summary_remind_new_movie">Remind me if there\'s new movie</string>
+    <string name="txt_title_search">Search</string>
 </resources>

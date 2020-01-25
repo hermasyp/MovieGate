@@ -13,4 +13,9 @@
     <string name="txt_search">Pencarian</string>
     <string name="txt_search_not_found">Data Pencarian Tidak Ada</string>
     <string name="txt_unknown">Unknown</string>
+    <string name="txt_summary_reminder_daily">Ingatkan saya untuk membuka aplikasi pada jam 7 pagi</string>
+    <string name="txt_title_reminder_daily">Ingatkan Saya Tiap Hari !</string>
+    <string name="txt_title_reminder_new_movie">Pengingat Film Baru</string>
+    <string name="txt_summary_remind_new_movie">Ingatkan saya ketika ada film baru</string>
+    <string name="txt_title_search">Pencarian</string>
 </resources>

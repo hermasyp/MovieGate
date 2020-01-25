@@ -13,4 +13,9 @@
     <string name="txt_search">Search</string>
     <string name="txt_search_not_found">Search Result Not Found</string>
     <string name="txt_unknown">Unknown</string>
+    <string name="txt_summary_reminder_daily">Notify me when i\'m not opening app in 7am</string>
+    <string name="txt_title_reminder_daily">Remind me Everyday</string>
+    <string name="txt_title_reminder_new_movie">New Movie Reminder</string>
+    <string name="txt_summary_remind_new_movie">Remind me if there\'s new movie</string>
+    <string name="txt_title_search">Search</string>
 </resources>
