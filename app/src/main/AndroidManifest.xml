@@ -18,9 +18,8 @@
             android:enabled="true"
             android:exported="true"/>
 
-
-
         <activity
+            android:parentActivityName=".ui.main.MainActivity"
             android:name=".ui.setting.SettingsActivity"
             android:label="@string/title_activity_settings"></activity>
         <activity
@@ -44,11 +43,9 @@
         </activity>
         <activity
             android:name=".ui.main.MainActivity"
-            android:label="@string/title_activity_main"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
