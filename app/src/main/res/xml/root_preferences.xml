@@ -14,25 +14,37 @@
   ~ limitations under the License.
   -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.preference.PreferenceCategory
         android:title="@string/txt_notify_alarm"
         app:iconSpaceReserved="false">
-        <SwitchPreference
+        <androidx.preference.SwitchPreference
             android:defaultValue="false"
             android:key="@string/txt_key_reminder_daily"
             android:summary="@string/txt_summary_reminder_daily"
             android:title="@string/txt_title_reminder_daily"
             app:iconSpaceReserved="false" />
 
-        <SwitchPreference
+        <androidx.preference.SwitchPreference
             android:defaultValue="false"
-            android:key="reminder_new_movie"
+            android:key="@string/txt_key_reminder_new_movie"
             android:summary="@string/txt_summary_remind_new_movie"
             android:title="@string/txt_title_reminder_new_movie"
             app:iconSpaceReserved="false" />
 
     </androidx.preference.PreferenceCategory>
-</PreferenceScreen>
+
+    <androidx.preference.PreferenceCategory
+        android:title="@string/txt_title_category_general"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="@string/txt_key_change_language"
+            android:summary="@string/txt_summary_change_language"
+            android:title="@string/txt_change_language"
+            app:iconSpaceReserved="false" />
+
+    </androidx.preference.PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

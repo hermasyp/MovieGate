@@ -29,6 +29,11 @@ class DetailMovieActivity : AppCompatActivity() {
             intent.putExtra(ARG_MOVIE_PARCELABLE, movie)
             context?.startActivity(intent)
         }
+        fun makeIntent(context: Context?,movie: String?) : Intent{
+            val intent = Intent(context, DetailMovieActivity::class.java)
+            intent.putExtra(ARG_MOVIE_PARCELABLE, movie)
+            return intent
+        }
     }
 
     private val scopeId = "detailMovieScope"

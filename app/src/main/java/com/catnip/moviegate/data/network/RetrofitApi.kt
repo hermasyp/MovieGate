@@ -8,6 +8,7 @@ import com.catnip.moviegate.model.detailtvshow.DetailTvShows
 import io.reactivex.Single
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -41,6 +42,10 @@ interface RetrofitApi {
 
     @GET("/3/search/movie/")
     fun getSearchMovie(@Query("query") query: String): Single<Results<Content>>
+
+    @GET("/3/discover/movie")
+    fun getLatestMovie(@Query("primary_release_date.gte") gte: String,
+                       @Query("primary_release_date.lte") lte: String): Call<Results<Content>>
 
     companion object {
         operator fun invoke(): RetrofitApi {

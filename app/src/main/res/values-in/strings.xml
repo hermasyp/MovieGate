@@ -18,4 +18,13 @@
     <string name="txt_title_reminder_new_movie">Pengingat Film Baru</string>
     <string name="txt_summary_remind_new_movie">Ingatkan saya ketika ada film baru</string>
     <string name="txt_title_search">Pencarian</string>
+    <string name="txt_summary_change_language">Ganti Bahasa Aplikasi</string>
+    <string name="txt_title_category_general">Umum</string>
+    <string name="txt_key_reminder_new_movie">reminder_new_movie</string>
+    <string name="txt_notif_title_daily">Kami Merindukan Anda..</string>
+    <string name="txt_notif_content_daily">Yuk kita temukan film terbaik</string>
+    <string name="txt_toast_new_movie_alarm_on">Alarm film baru dinyalakan</string>
+    <string name="txt_toast_new_movie_alarm_off">Alarm Film baru dimatikan</string>
+    <string name="txt_toast_daily_alarm_on">Alarm Harian Menyala</string>
+    <string name="txt_toast_daily_alarm_off">Alarm Harian dimatikan</string>
 </resources>

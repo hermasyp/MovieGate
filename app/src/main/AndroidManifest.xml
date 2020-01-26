@@ -13,6 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <!--Receiver-->
+        <receiver android:name=".services.UserNotifyManager"
+            android:enabled="true"
+            android:exported="true"/>
+
+
+
         <activity
             android:name=".ui.setting.SettingsActivity"
             android:label="@string/title_activity_settings"></activity>

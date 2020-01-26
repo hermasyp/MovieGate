@@ -121,11 +121,7 @@
     <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="txt_title_category_general">General</string>
     <string name="txt_notify_alarm">Notify Alarm</string>
     <string name="txt_key_reminder_daily">reminder_daily</string>
     <string name="txt_title_reminder_daily">Remind me Everyday</string>
@@ -133,4 +129,14 @@
     <string name="txt_title_reminder_new_movie">New Movie Reminder</string>
     <string name="txt_summary_remind_new_movie">Remind me if there\'s new movie</string>
     <string name="txt_title_search">Search</string>
+    <string name="txt_key_change_language">change_language</string>
+    <string name="txt_summary_change_language">Change App Language</string>
+    <string name="txt_key_reminder_new_movie">reminder_new_movie</string>
+    <string name="txt_notif_title_daily">We Miss You..</string>
+    <string name="txt_notif_content_daily">Let\'s find some good movie</string>
+    <string name="txt_toast_new_movie_alarm_on">New Movie Alarm Has Been set</string>
+    <string name="txt_toast_new_movie_alarm_off">Alarm New Movie Off</string>
+    <string name="txt_toast_daily_alarm_on">Daily Alarm Turn On</string>
+    <string name="txt_toast_daily_alarm_off">Alarm Daily Turn Off</string>
+
 </resources>
