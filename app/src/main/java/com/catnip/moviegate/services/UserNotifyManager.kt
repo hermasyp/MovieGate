@@ -18,7 +18,6 @@ import com.catnip.moviegate.services.AlarmManagerUtils.Companion.CH_NEW_MOVIE
 import com.catnip.moviegate.services.AlarmManagerUtils.Companion.ID_REMINDER_DAILY
 import com.catnip.moviegate.services.AlarmManagerUtils.Companion.ID_REMINDER_NEW_MOVIE
 import com.catnip.moviegate.services.AlarmManagerUtils.Companion.TYPE_DAILY
-import com.catnip.moviegate.services.AlarmManagerUtils.Companion.TYPE_NEW_MOVIE
 import com.catnip.moviegate.ui.detailmovie.DetailMovieActivity
 import com.catnip.moviegate.ui.main.MainActivity
 import com.catnip.moviegate.utils.date.DateUtils
@@ -40,7 +39,7 @@ class UserNotifyManager : BroadcastReceiver() {
             //todo : setting up notification reminder daily
             NotificationUtils().makeNotification(
                 context,
-                Intent(context,MainActivity::class.java),
+                Intent(context, MainActivity::class.java),
                 NotificationData(
                     CH_DAILY.first,
                     CH_DAILY.second,
@@ -61,7 +60,20 @@ class UserNotifyManager : BroadcastReceiver() {
         api.getLatestMovie(DateUtils.getFormattedTimeNow(), DateUtils.getFormattedTimeNow())
             .enqueue(object : Callback<Results<Content>> {
                 override fun onFailure(call: Call<Results<Content>>, t: Throwable) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    context?.let {
+                        NotificationUtils().makeNotification(
+                            it,
+                            Intent(it, MainActivity::class.java),
+                            NotificationData(
+                                CH_NEW_MOVIE.first,
+                                CH_NEW_MOVIE.second,
+                                ID_REMINDER_NEW_MOVIE,
+                                it.getString(R.string.txt_new_movie_failed_notif),
+                                it.getString(R.string.txt_content_new_movie_failed),
+                                R.drawable.ic_new_movie
+                            )
+                        )
+                    }
                 }
 
                 override fun onResponse(
@@ -181,11 +193,3 @@ data class NotificationData(
     var content: String,
     var smallIcon: Int
 )
-
-fun Calendar.timeToCalendar(hour: Int, minute: Int, sec: Int) {
-    let {
-        set(Calendar.HOUR_OF_DAY, hour)
-        set(Calendar.MINUTE, minute)
-        set(Calendar.SECOND, sec)
-    }
-}

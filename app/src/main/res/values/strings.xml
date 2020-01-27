@@ -138,5 +138,7 @@
     <string name="txt_toast_new_movie_alarm_off">Alarm New Movie Off</string>
     <string name="txt_toast_daily_alarm_on">Daily Alarm Turn On</string>
     <string name="txt_toast_daily_alarm_off">Alarm Daily Turn Off</string>
+    <string name="txt_new_movie_failed_notif">There\'s New Movie</string>
+    <string name="txt_content_new_movie_failed">Go and Check it now !</string>
 
 </resources>

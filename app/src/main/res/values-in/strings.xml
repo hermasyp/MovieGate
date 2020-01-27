@@ -27,4 +27,6 @@
     <string name="txt_toast_new_movie_alarm_off">Alarm Film baru dimatikan</string>
     <string name="txt_toast_daily_alarm_on">Alarm Harian Menyala</string>
     <string name="txt_toast_daily_alarm_off">Alarm Harian dimatikan</string>
+    <string name="txt_new_movie_failed_notif">Ada film baru nih !</string>
+    <string name="txt_content_new_movie_failed">Yuk kita cek..</string>
 </resources>
