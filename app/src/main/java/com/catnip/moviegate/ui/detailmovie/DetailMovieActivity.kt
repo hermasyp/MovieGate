@@ -14,6 +14,7 @@ import com.catnip.moviegate.R
 import com.catnip.moviegate.data.network.ResultState
 import com.catnip.moviegate.di.ScopeNames
 import com.catnip.moviegate.model.detailmovie.DetailMovie
+import com.catnip.moviegate.ui.widget.WidgetTools
 import com.catnip.moviegate.utils.genre.GenreGenerator
 import kotlinx.android.synthetic.main.activity_detail_movie.*
 import kotlinx.android.synthetic.main.content_detail_movie.*
@@ -29,7 +30,8 @@ class DetailMovieActivity : AppCompatActivity() {
             intent.putExtra(ARG_MOVIE_PARCELABLE, movie)
             context?.startActivity(intent)
         }
-        fun makeIntent(context: Context?,movie: String?) : Intent{
+
+        fun makeIntent(context: Context?, movie: String?): Intent {
             val intent = Intent(context, DetailMovieActivity::class.java)
             intent.putExtra(ARG_MOVIE_PARCELABLE, movie)
             return intent
@@ -67,12 +69,14 @@ class DetailMovieActivity : AppCompatActivity() {
                         img_favorite.setOnClickListener {
                             detailMovieViewModel.deleteFromFavorite(detailMovie)
                             detailMovieViewModel.isFavorited(movie)
+                            WidgetTools.changeWidget(baseContext)
                         }
                     } else {
                         img_favorite.setImageResource(R.drawable.ic_false_favorites)
                         img_favorite.setOnClickListener {
                             detailMovieViewModel.setToFavorite(detailMovie)
                             detailMovieViewModel.isFavorited(movie)
+                            WidgetTools.changeWidget(baseContext)
                         }
                     }
                 }
@@ -110,7 +114,11 @@ class DetailMovieActivity : AppCompatActivity() {
                 }
                 is ResultState.Success -> {
                     if (it.data) {
-                        Toast.makeText(this, getString(R.string.txt_delete_success), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            getString(R.string.txt_delete_success),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
                 is ResultState.Failure -> {
@@ -126,7 +134,11 @@ class DetailMovieActivity : AppCompatActivity() {
                 }
                 is ResultState.Success -> {
                     if (it.data) {
-                        Toast.makeText(this, getString(R.string.txt_save_success), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            getString(R.string.txt_save_success),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
                 is ResultState.Failure -> {

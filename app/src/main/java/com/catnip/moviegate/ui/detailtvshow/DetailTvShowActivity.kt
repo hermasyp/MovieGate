@@ -14,6 +14,7 @@ import com.catnip.moviegate.R
 import com.catnip.moviegate.data.network.ResultState
 import com.catnip.moviegate.di.ScopeNames
 import com.catnip.moviegate.model.detailtvshow.DetailTvShows
+import com.catnip.moviegate.ui.widget.WidgetTools
 import com.catnip.moviegate.utils.genre.GenreGenerator
 import kotlinx.android.synthetic.main.activity_detail_tv_show.*
 import kotlinx.android.synthetic.main.content_detail_tv_show.*
@@ -58,14 +59,17 @@ class DetailTvShowActivity : AppCompatActivity() {
                 }
                 is ResultState.Success -> {
                     if (it.data) {
+
                         img_favorite.setImageResource(R.drawable.ic_true_favorite)
                         img_favorite.setOnClickListener {
+                            WidgetTools.changeWidget(baseContext)
                             detailTvShowViewModel.deleteFromFavorite(detailTvShow)
                             detailTvShowViewModel.isFavorited(detailTvShow.id)
                         }
                     } else {
                         img_favorite.setImageResource(R.drawable.ic_false_favorites)
                         img_favorite.setOnClickListener {
+                            WidgetTools.changeWidget(baseContext)
                             detailTvShowViewModel.setToFavorite(detailTvShow)
                             detailTvShowViewModel.isFavorited(detailTvShow.id)
                         }

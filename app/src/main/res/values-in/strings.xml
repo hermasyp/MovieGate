@@ -29,4 +29,5 @@
     <string name="txt_toast_daily_alarm_off">Alarm Harian dimatikan</string>
     <string name="txt_new_movie_failed_notif">Ada film baru nih !</string>
     <string name="txt_content_new_movie_failed">Yuk kita cek..</string>
+    <string name="txt_empty_favorite_widget">Anda tidak memiliki daftar konten favorit</string>
 </resources>

@@ -1,7 +1,6 @@
 package com.catnip.moviegate.ui.main.favorites.favoritelist
 
 import android.os.Bundle
-import android.util.Log
 import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +11,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.catnip.moviegate.R
 import com.catnip.moviegate.data.local.entity.ContentType
-import com.catnip.moviegate.data.local.entity.Favorite
 import com.catnip.moviegate.data.network.ResultState
 import com.catnip.moviegate.ui.detailmovie.DetailMovieActivity
 import com.catnip.moviegate.ui.detailtvshow.DetailTvShowActivity
+import com.catnip.moviegate.ui.widget.WidgetTools
 import kotlinx.android.synthetic.main.fragment_tab_favorite.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -51,7 +50,10 @@ class FavoriteListFragment : Fragment() {
                 }
             },
             {
-                it?.let { fav -> favoriteListViewModel.deleteFavorite(fav) }
+                it?.let { fav ->
+
+                    context?.let { it1 -> WidgetTools.changeWidget(it1) }
+                    favoriteListViewModel.deleteFavorite(fav) }
             })
 
         favoriteListViewModel.deleteResult.observe(this) {

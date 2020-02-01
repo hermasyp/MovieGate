@@ -41,6 +41,8 @@ class FavoriteDataSource(
                     saveResult.failed(it)
                 }
             ).addTo(compositeDisposable)
+
+
     }
 
     fun deleteFavorite(favorite: Favorite) {

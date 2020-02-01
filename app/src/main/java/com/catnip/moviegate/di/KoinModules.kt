@@ -133,4 +133,5 @@ val scopesModule = module {
     }
     viewModel { FavoriteListViewModel(get()) }
 
+
 }

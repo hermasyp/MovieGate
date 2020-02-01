@@ -13,7 +13,6 @@ import com.catnip.moviegate.R
 import com.catnip.moviegate.services.AlarmManagerUtils
 import com.catnip.moviegate.services.AlarmManagerUtils.Companion.TYPE_DAILY
 import com.catnip.moviegate.services.AlarmManagerUtils.Companion.TYPE_NEW_MOVIE
-import com.catnip.moviegate.services.timeToCalendar
 import java.util.*
 
 class SettingsActivity : AppCompatActivity() {

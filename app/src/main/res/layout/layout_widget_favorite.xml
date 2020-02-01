@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baseColorPage">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/txt_title_widget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/baseColorCard"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:text="Favorited Movie"
+            android:textColor="@color/baseColorPrimaryText"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txt_secondary_title_widget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/baseColorCard"
+            android:paddingStart="16dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:text="Your Favorited movie"
+            android:textColor="@color/baseColorSecondaryText"
+            android:textSize="14sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <StackView
+                android:id="@+id/sv_widget"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:loopViews="true"
+                android:padding="16dp"/>
+
+            <TextView
+                android:id="@+id/txt_no_data_widget"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/txt_empty_favorite_widget"
+                android:textAlignment="center"
+                android:textColor="@color/baseColorPrimaryText"
+                android:textSize="16sp"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>
+
+
