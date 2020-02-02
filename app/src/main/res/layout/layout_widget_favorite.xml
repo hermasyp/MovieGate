@@ -33,28 +33,23 @@
             android:text="Your Favorited movie"
             android:textColor="@color/baseColorSecondaryText"
             android:textSize="14sp" />
-
-        <FrameLayout
+        <StackView
+            android:id="@+id/sv_widget"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <StackView
-                android:id="@+id/sv_widget"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:loopViews="true"
-                android:padding="16dp"/>
+            android:layout_height="match_parent"
+            android:loopViews="true"/>
 
-            <TextView
-                android:id="@+id/txt_no_data_widget"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/txt_empty_favorite_widget"
-                android:textAlignment="center"
-                android:textColor="@color/baseColorPrimaryText"
-                android:textSize="16sp"
-                android:visibility="gone" />
-        </FrameLayout>
+        <TextView
+            android:id="@+id/txt_no_data_widget"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/txt_empty_favorite_widget"
+            android:textAlignment="center"
+            android:textColor="@color/baseColorPrimaryText"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
     </LinearLayout>
 </FrameLayout>
 

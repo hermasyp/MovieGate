@@ -52,10 +52,12 @@ internal fun updateAppWidget(
     val i = Intent(context, FavoriteWidgetService::class.java)
     i.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
     i.data = Uri.parse(i.toUri(Intent.URI_INTENT_SCHEME))
+    appWidgetManager.updateAppWidget(appWidgetId, null)
 
     val view = RemoteViews(context.packageName, R.layout.layout_widget_favorite)
     view.setRemoteAdapter(R.id.sv_widget, i)
     view.setEmptyView(R.id.sv_widget, R.id.txt_no_data_widget)
+    appWidgetManager.updateAppWidget(appWidgetId, view)
 
 
     val favIntent = Intent(context, FavoriteStackImageWidget::class.java)

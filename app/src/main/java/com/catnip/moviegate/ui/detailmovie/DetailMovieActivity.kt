@@ -2,6 +2,7 @@ package com.catnip.moviegate.ui.detailmovie
 
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.util.Log.d
 import android.view.View
@@ -27,6 +28,7 @@ class DetailMovieActivity : AppCompatActivity() {
         const val ARG_MOVIE_PARCELABLE = "MOVIE"
         fun run(context: Context?, movie: String?) {
             val intent = Intent(context, DetailMovieActivity::class.java)
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
             intent.putExtra(ARG_MOVIE_PARCELABLE, movie)
             context?.startActivity(intent)
         }
