@@ -10,9 +10,6 @@ import android.widget.RemoteViewsService
 import androidx.core.graphics.drawable.toBitmap
 import coil.Coil
 import coil.api.get
-import coil.api.load
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.catnip.moviegate.BuildConfig
 import com.catnip.moviegate.R
 import com.catnip.moviegate.data.local.dao.FavoriteDao
@@ -41,6 +38,7 @@ class RemoteViewsFavoriteWidget(
     private val appScheduler by inject<AppScheduler>()
     override fun onCreate() {
         compositeDisposable = CompositeDisposable()
+        fetchData()
     }
 
     override fun onDestroy() {
@@ -57,7 +55,7 @@ class RemoteViewsFavoriteWidget(
             .subscribe(
                 {
                     favorites.clear()
-                    favorites = it
+                    favorites.addAll(it)
                 },
                 {
                     Log.d(TAG, it?.message)

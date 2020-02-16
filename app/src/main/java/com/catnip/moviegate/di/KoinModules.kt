@@ -45,7 +45,7 @@ object ScopeNames {
     const val DetailTvShowScopes = "DetailTvShowActivity"
 }
 
-val databaseModule = module {
+val databaseModule = module(createdAtStart = true) {
     single {
         Room.databaseBuilder(get(), AppDatabase::class.java, AppDatabase.DBNAME)
             .fallbackToDestructiveMigration()

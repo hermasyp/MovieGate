@@ -1,18 +1,12 @@
-package com.catnip.moviegate.data.local.entity
+package com.catnip.mgfavapp.model
 
 import android.net.Uri
-import androidx.room.*
-import com.catnip.moviegate.data.local.entity.Favorite.Companion.TABLE_NAME
-import com.catnip.moviegate.model.content.Content
-
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 
-@Entity(tableName = TABLE_NAME)
 data class Favorite(
-    @PrimaryKey
     var id: String,
     var type: String,
     var title: String,
@@ -36,7 +30,3 @@ data class Favorite(
             .build()
     }
 }
-enum class ContentType{
-    MOVIE,TVSHOWS
-}
-

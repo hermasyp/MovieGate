@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.50'
+    ext.kotlin_version = '1.3.61'
     ext.appId = "com.catnip.moviegate"
     ext.releases = [
             'versionCode'      : 1,
@@ -14,12 +14,12 @@ buildscript {
     ext.versions = [
             'gson'            : '2.8.6',
             'kotlin'          : '1.3.61',
-            'gradle'          : '3.5.1',
+            'gradle'          : '3.5.3',
             'constraintLayout': '1.1.3',
             'appCompat'       : '1.1.0',
             'design'          : '1.1.0',
             'materials'       : '1.0.0',
-            'cardview'       : '1.0.0',
+            'cardview'        : '1.0.0',
             'vectordrawable'  : '1.0.1',
             'ktx'             : '1.1.0',
             'retrofit'        : '2.7.0',
@@ -111,7 +111,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath deps.projects.gradle
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

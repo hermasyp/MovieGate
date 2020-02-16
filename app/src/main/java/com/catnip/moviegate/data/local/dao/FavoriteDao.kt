@@ -1,5 +1,6 @@
 package com.catnip.moviegate.data.local.dao
 
+import android.database.Cursor
 import androidx.room.*
 import com.catnip.moviegate.data.local.entity.ContentType
 import com.catnip.moviegate.data.local.entity.Favorite
@@ -28,5 +29,8 @@ interface FavoriteDao {
 
     @Query("SELECT * FROM favorites where id = :id")
     fun isContentFavorited(id: String?): Single<MutableList<Favorite>>
+
+    @Query("SELECT * FROM favorites where type = 'MOVIE'")
+    fun getAllMoviesFavCursor(): Cursor
 
 }

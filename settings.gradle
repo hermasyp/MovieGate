@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':fav-movigate-app'
 rootProject.name='MovieGate'

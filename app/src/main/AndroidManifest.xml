@@ -4,6 +4,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <permission
+        android:name="com.catnip.moviegate.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.catnip.moviegate.WRITE_DATABASE"
+        android:protectionLevel="normal" />
+
     <application
         android:name=".base.MovieGateApp"
         android:allowBackup="true"
@@ -13,6 +20,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <provider
+            android:name=".services.FavoriteContentProvider"
+            android:authorities="com.catnip.moviegate"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.catnip.moviegate.READ_DATABASE"
+            android:writePermission="com.catnip.moviegate.WRITE_DATABASE"></provider>
+
         <receiver android:name=".ui.widget.FavoriteStackImageWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -21,9 +36,7 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/favorite_stack_image_widget_info" />
-        </receiver>
-
-        <!-- Receiver -->
+        </receiver> <!-- Receiver -->
         <receiver
             android:name=".services.UserNotifyManager"
             android:enabled="true"
@@ -61,8 +74,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".ui.widget.FavoriteWidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
+        <service
+            android:name=".ui.widget.FavoriteWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>

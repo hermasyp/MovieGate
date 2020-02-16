@@ -51,7 +51,7 @@ internal fun updateAppWidget(
 ) {
     val i = Intent(context, FavoriteWidgetService::class.java)
     i.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-    i.data = Uri.parse(i.toUri(Intent.URI_INTENT_SCHEME))
+    i.data = i.toUri(Intent.URI_INTENT_SCHEME).toUri()
     appWidgetManager.updateAppWidget(appWidgetId, null)
 
     val view = RemoteViews(context.packageName, R.layout.layout_widget_favorite)
