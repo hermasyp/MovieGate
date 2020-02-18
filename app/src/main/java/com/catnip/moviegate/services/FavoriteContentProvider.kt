@@ -10,7 +10,6 @@ import com.catnip.moviegate.data.local.entity.Favorite
 import com.catnip.moviegate.data.local.entity.Favorite.Companion.AUTHORITY
 import org.koin.core.KoinComponent
 import org.koin.core.get
-import org.koin.core.inject
 
 class FavoriteContentProvider : ContentProvider(), KoinComponent {
     private lateinit var dao: FavoriteDao
@@ -52,10 +51,12 @@ class FavoriteContentProvider : ContentProvider(), KoinComponent {
         uri: Uri, projection: Array<String>?, selection: String?,
         selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor? {
-        return when (uriMatcher.match(uri)) {
+        val cursor =  when (uriMatcher.match(uri)) {
             FAVORITES -> dao.getAllMoviesFavCursor()
             else -> null
         }
+        cursor?.setNotificationUri(context?.contentResolver,uri)
+        return cursor
     }
 
     override fun update(

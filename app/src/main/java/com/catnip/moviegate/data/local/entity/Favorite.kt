@@ -1,9 +1,9 @@
 package com.catnip.moviegate.data.local.entity
 
 import android.net.Uri
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.catnip.moviegate.data.local.entity.Favorite.Companion.TABLE_NAME
-import com.catnip.moviegate.model.content.Content
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas
@@ -21,7 +21,7 @@ data class Favorite(
     var posterPath: String
 ){
     companion object{
-        const val AUTHORITY = "com.catnip.moviegate"
+        const val AUTHORITY = "com.catnip.moviegate.provider"
         const val TABLE_NAME = "favorites"
         const val SCHEME = "content"
         const val FAV_ID = "id"
