@@ -82,20 +82,21 @@ class UserNotifyManager : BroadcastReceiver() {
                 ) {
                     if (response.isSuccessful) {
                         val datas = response.body()?.datas
-                        val content = datas?.get(0)
-                        content?.let {
-                            NotificationUtils().makeNotification(
-                                context,
-                                DetailMovieActivity.makeIntent(context, it.id),
-                                NotificationData(
-                                    CH_NEW_MOVIE.first,
-                                    CH_NEW_MOVIE.second,
-                                    ID_REMINDER_NEW_MOVIE,
-                                    "New Movie : " + it.title,
-                                    it.overview,
-                                    R.drawable.ic_new_movie
+                        datas?.forEach {
+                            it.let {
+                                NotificationUtils().makeNotification(
+                                    context,
+                                    DetailMovieActivity.makeIntent(context, it.id),
+                                    NotificationData(
+                                        CH_NEW_MOVIE.first,
+                                        CH_NEW_MOVIE.second,
+                                        ID_REMINDER_NEW_MOVIE,
+                                        "New Movie : " + it.title,
+                                        it.overview,
+                                        R.drawable.ic_new_movie
+                                    )
                                 )
-                            )
+                            }
                         }
                     }
                 }
